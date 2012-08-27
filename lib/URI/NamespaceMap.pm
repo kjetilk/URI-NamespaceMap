@@ -9,6 +9,7 @@ has namespace_map => (
         add_mapping => 'set',
 	remove_mapping => 'delete',
 	namespace_uri => 'get',
+	list_namespaces => 'values',
     }
 )
 
