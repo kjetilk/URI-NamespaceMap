@@ -1,5 +1,6 @@
 package URI::Namespace;
 use Moose;
+use Moose::Util::TypeConstraints;
 use URI;
 
 around BUILDARGS {
@@ -8,9 +9,14 @@ around BUILDARGS {
     return { uri => $a[0] };
 }
 
+class_type 'URI';
+
+coerce 'URI' => from 'Str' => via { URI->new($_) };
+
 has uri => ( 
     is => 'ro', 
     isa => 'URI', 
+	 coerce => 1,
     required => 1
 );
 
