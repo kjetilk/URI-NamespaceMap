@@ -12,9 +12,30 @@ has namespace_map => (
     }
 )
 
-sub uri { 
-    my $self = shift;
-    URI::Namespace->new($self->get(@_));
+
+=item C<< uri ( $prefixed_name ) >>
+
+Returns a URI for an abbreviated string such as 'foaf:Person'.
+
+=cut
+
+sub uri {
+	my $self	= shift;
+	my $abbr	= shift;
+	my $ns;
+	my $local	= "";
+	if ($abbr =~ m/^([^:]*):(.*)$/) {
+		$ns	= $self->{ $1 };
+		$local	= $2;
+	} else {
+		$ns	= $self->{ $abbr };
+	}
+	return unless (blessed($ns));
+	if ($local ne '') {
+		return $ns->$local();
+	} else {
+		return $ns->as_string;
+	}
 }
 
 1;
