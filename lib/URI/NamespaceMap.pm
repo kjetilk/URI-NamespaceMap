@@ -146,6 +146,12 @@ sub AUTOLOAD {
 }
 
 
+=head1 WARNING
+
+Avoid using the names 'can', 'isa', 'VERSION', and 'DOES' as namespace
+prefix, because these names are defined as method for every Perl
+object by default. The method names 'new' and 'uri' are also
+forbidden. Names of methods of L<Moose::Object> must also be avoided.
 
 =head1 AUTHORS
 
