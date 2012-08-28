@@ -10,4 +10,4 @@
     :test_requires "Test::More 0.88" ;
     :requires "Moose", "URI 1.52" .
 
-:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
+_:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
