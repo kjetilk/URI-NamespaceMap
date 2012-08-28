@@ -14,7 +14,7 @@ is($foaf->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
 my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 
 {
-	my $map		= URI::NamespaceMap->new({});
+	my $map		= URI::NamespaceMap->new;
 	isa_ok( $map, 'URI::NamespaceMap' );
 }
 

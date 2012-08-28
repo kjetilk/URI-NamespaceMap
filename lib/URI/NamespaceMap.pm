@@ -2,21 +2,24 @@ package URI::NamespaceMap;
 use Moose;
 
 has namespace_map => (
-    isa => 'HashRef',
-    traits => ['Hash'],
-    default => sub { {} },
-    handles => {
-        add_mapping => 'set',
-	remove_mapping => 'delete',
-	namespace_uri => 'get',
-	list_namespaces => 'values',
-    }
-)
+							 isa => 'HashRef',
+							 traits => ['Hash'],
+							 default => sub { {} },
+							 handles => {
+											 add_mapping => 'set',
+											 remove_mapping => 'delete',
+											 namespace_uri => 'get',
+											 list_namespaces => 'values',
+											}
+							);
 
+=over
 
 =item C<< uri ( $prefixed_name ) >>
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
+
+=back
 
 =cut
 
