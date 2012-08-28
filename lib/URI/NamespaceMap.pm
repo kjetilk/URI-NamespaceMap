@@ -133,6 +133,8 @@ sub uri {
 	}
 }
 
+no Moose::Util::TypeConstraints;
+
 our $AUTOLOAD;
 sub AUTOLOAD {
     my ($self, $arg) = @_;
@@ -142,6 +144,7 @@ sub AUTOLOAD {
     return $ns->$arg if $arg;
     return $ns;
 }
+
 
 
 =head1 AUTHORS

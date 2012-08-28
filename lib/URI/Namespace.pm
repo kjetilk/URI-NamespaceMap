@@ -17,7 +17,7 @@ has uri => (
     isa => 'URI', 
 	 coerce => 1,
     required => 1,
-	 handles => ['as_string']
+	 handles => ['as_string', 'as_iri', 'canonical']
 );
 
 our $AUTOLOAD;
@@ -26,5 +26,8 @@ sub AUTOLOAD {
   my ($name) = $AUTOLOAD =~ /::(\w+)$/;
   return URI->new($self->uri . "$name");
 }
+
+no Moose::Util::TypeConstraints;
+no Moose;
 1;
 __END__
