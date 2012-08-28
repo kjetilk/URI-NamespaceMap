@@ -4,9 +4,9 @@ use Moose::Util::TypeConstraints;
 use URI;
 
 around BUILDARGS => sub {
-    my ($ns, $self, @attributes) = @_;
-#    return $self->$ns(@_) if ((@attributes > 1) || (ref($attributes[0]) eq 'HASH'));
-    return { uri => $attributes[0] };
+    my ($next, $self, @parameters) = @_;
+    return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
+    return { uri => $parameters[0] };
 };
 
 class_type 'URI';
