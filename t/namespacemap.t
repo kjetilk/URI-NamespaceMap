@@ -71,7 +71,7 @@ is( $type->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'expect
 $ns		= $map->foaf;
 isa_ok( $ns, 'URI::Namespace' );
 my $uri	= $ns->as_string;
-is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'expected resource object for namespace from namespace map' );
+is( $uri, 'http://xmlns.com/foaf/0.1/', 'expected resource object for namespace from namespace map' );
 
 $type		= $map->uri('rdf:type');
 isa_ok( $type, 'URI' );
@@ -84,5 +84,7 @@ is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'resolving via uri method' );
 
 $uri		= $map->uri('foaf');
 isa_ok( $uri, 'URI' );
+
+is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'resolving via uri method' );
 
 done_testing;
