@@ -45,32 +45,36 @@ around BUILDARGS => sub {
   return { namespace_map => $parameters[0] };
 };
 
-subtype NamespaceMap => as HashRef => where { my $h = $_;  return 1 unless values %$h; return if grep { !blessed $_ } values %$h; return 1 };
+subtype NamespaceMap => as HashRef => where { 
+    my $h = $_;  
+    return 1 unless values %$h; 
+    return if grep { !blessed $_ } values %$h; 
+    return 1
+};
 coerce NamespaceMap => from HashRef => via {
     my $hash = $_;
     return {
-		map {
-		  my $k = $_;
-		  my $v = $hash->{$_}; 
-		  $k => blessed $v ? $v : URI::Namespace->new($v) 
-		} keys %$hash
-	 };
+         map {
+	      my $k = $_;
+              my $v = $hash->{$_}; 
+              $k => blessed $v ? $v : URI::Namespace->new($v) 
+         } keys %$hash
+    };
 };
 
 has namespace_map => (
-							 isa => 'NamespaceMap',
-							 traits => ['Hash'],
-
-							 coerce => 1,
-							 default => sub { {} },
-							 handles => {
-											 add_mapping => 'set',
-											 remove_mapping => 'delete',
-											 namespace_uri => 'get',
-											 list_namespaces => 'values',
-											 list_prefixes => 'keys',
-											}
-							);
+    isa => 'NamespaceMap',
+    traits => ['Hash'],
+    coerce => 1,
+    default => sub { {} },
+    handles => {
+         add_mapping => 'set',
+         remove_mapping => 'delete',
+	 namespace_uri => 'get',
+	 list_namespaces => 'values',
+         list_prefixes => 'keys',
+   }
+);
 
 =over
 
@@ -88,7 +92,7 @@ sub uri {
 	my $ns;
 	my $local	= "";
 	if ($abbr =~ m/^([^:]*):(.*)$/) {
-		$ns	= $self->{ $1 };
+		$ns	= $self->namespace_uri( $1 );
 		$local	= $2;
 	} else {
 		$ns	= $self->{ $abbr };
@@ -99,6 +103,13 @@ sub uri {
 	} else {
 		return $ns->as_string;
 	}
+}
+
+our $AUTOLOAD;
+sub AUTOLOAD {
+    my $self = shift;
+    my ($name) = ($AUTOLOAD =~ /::(\w+)$/);
+    $self->namespace_uri($name);
 }
 
 1;

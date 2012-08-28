@@ -21,6 +21,11 @@ has uri => (
 	 handles => ['as_string']
 );
 
-
+our $AUTOLOAD;
+sub AUTOLOAD {
+  my $self = shift;
+  my ($name) = $AUTOLOAD =~ /::(\w+)$/;
+  return __PACKAGE__->new($self->uri . "$name");
+}
 1;
 __END__
