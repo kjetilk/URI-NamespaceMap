@@ -3,11 +3,11 @@ use Moose;
 use Moose::Util::TypeConstraints;
 use URI;
 
-around BUILDARGS {
-    my ($n, $s, @a) = @_;
-    return $s->$n(@_) if @a > 1 || ref($a[0]) eq 'HASH';
-    return { uri => $a[0] };
-}
+around BUILDARGS => sub {
+    my ($ns, $self, @attributes) = @_;
+#    return $self->$ns(@_) if ((@attributes > 1) || (ref($attributes[0]) eq 'HASH'));
+    return { uri => $attributes[0] };
+};
 
 class_type 'URI';
 
@@ -17,10 +17,10 @@ has uri => (
     is => 'ro', 
     isa => 'URI', 
 	 coerce => 1,
-    required => 1
+    required => 1,
+	 handles => ['as_string']
 );
 
-sub as_string { shift->uri }
 
 1;
 __END__
