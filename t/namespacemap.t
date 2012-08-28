@@ -26,6 +26,16 @@ my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 my $map		= URI::NamespaceMap->new( { foaf => $foaf, rdf => $rdf, xsd => 'http://www.w3.org/2001/XMLSchema#' } );
 isa_ok( $map, 'URI::NamespaceMap' );
 
+is_deeply($map->list_prefixes, ['foaf', 'rdf', 'xsd' ], 'Prefix listing OK');
+
+is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
+is($map->namespace_uri('xsd')->as_string, 'http://www.w3.org/2001/XMLSchema#', 'XSD URI string OK');
+
+
+is_deeply($map->list_namespaces, ['http://xmlns.com/foaf/0.1/','http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'http://www.w3.org/2001/XMLSchema#' ]);
+
+
+
 my $ns		= $map->xsd;
 isa_ok( $ns, 'URI::Namespace' );
 $map->remove_mapping( 'xsd' );
@@ -47,7 +57,7 @@ my $uri	= $ns->as_string;
 is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'expected resource object for namespace from namespace map' );
 
 $type		= $map->uri('rdf:type');
-isa_ok( $type, 'URI::Node::Resource' );
+isa_ok( $type, 'URI' );
 is( $type->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'resolving via uri method' );
 
 $uri		= $map->uri('foaf:');
