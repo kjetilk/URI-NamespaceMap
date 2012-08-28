@@ -129,7 +129,7 @@ sub uri {
 	if ($local ne '') {
 		return $ns->$local();
 	} else {
-		return $ns->as_string;
+		return $ns->uri
 	}
 }
 
