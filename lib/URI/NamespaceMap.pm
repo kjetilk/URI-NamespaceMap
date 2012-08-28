@@ -2,6 +2,42 @@ package URI::NamespaceMap;
 use Moose;
 use Moose::Util::TypeConstraints;
 
+
+=head1 NAME
+
+URI::NamespaceMap - Class holding a collection of namespaces
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+our $VERSION = '0.01';
+
+
+=head1 SYNOPSIS
+
+  use URI::NamespaceMap;
+  my $map = URI::NamespaceMap->new( { xsd => 'http://www.w3.org/2001/XMLSchema#' } );
+  $map->namespace_uri('xsd')->as_string;
+  my $foaf = URI::Namespace->new( 'http://xmlns.com/foaf/0.1/' );
+  $map->add_mapping(foaf => $foaf);
+  $map->add_mapping(rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
+  $map->list_prefixes;  #  ( 'foaf', 'rdf', 'xsd' )
+
+
+=head1 DESCRIPTION
+
+This module provides an object to manage multiple namespaces for creating L<URI::Namespace> objects and for serializing.
+
+=head1 METHODS
+
+
+
+=cut
+
+
 around BUILDARGS => sub {
   my ($next, $self, @parameters) = @_;
   return $self->$next(@parameters) if (@parameters > 1);
