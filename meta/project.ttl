@@ -1,0 +1,26 @@
+@prefix :     <http://usefulinc.com/ns/doap#> .
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix my:   <http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcs:  <http://ontologi.es/doap-changeset#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+<>
+    dc:title     "DOAP for URI-NamespaceMap"@en ;
+    dc:subject   my:project ;
+    dc:creator   <http://www.kjetil.kjernsmo.net/foaf#me> .
+
+my:project	 
+    a           :Project ;
+    :name       "URI-NamespaceMap" ;
+    :shortdesc  "Namespace manipulation and prefix mapping for XML, RDF, etc."@en ;
+    :created    "2012-08-27"^^xsd:date ;
+    :programming-language "Perl" ;
+    :maintainer <http://www.kjetil.kjernsmo.net/foaf#me> , 
+    		<http://kasei.us/about/foaf.xrdf#greg> ,
+		<http://purl.org/NET/cpan-uri/person/perigrin> ;
+    :bug-database <https://github.com/perigrin/URI-NamespaceMap/issues> .
+
+
