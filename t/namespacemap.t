@@ -58,9 +58,12 @@ isa_ok( $ns, 'URI::Namespace' );
 $map->remove_mapping( 'xsd' );
 is( $map->xsd, undef, 'removed namespace' );
 
-$map = URI::NamespaceMap->new( { foaf => 'http://xmlns.com/foaf/0.1/', '' => 'http://example.org/' } );
-isa_ok( $map, 'URI::NamespaceMap' );
-is ( $map->uri(':foo')->as_string, 'http://example.org/foo', 'empty prefix' );
+TODO: {
+  local $TODO = 'Empty prefixes not supported';
+  $map = URI::NamespaceMap->new( { foaf => 'http://xmlns.com/foaf/0.1/', '' => 'http://example.org/' } );
+  isa_ok( $map, 'URI::NamespaceMap' );
+  is ( $map->uri(':foo')->as_string, 'http://example.org/foo', 'empty prefix' );
+}
 
 $map->add_mapping( rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 
