@@ -23,11 +23,24 @@ my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 	isa_ok( $map, 'URI::NamespaceMap' );
 }
 
+{
+	my $map		= URI::NamespaceMap->new( { xsd => 'http://www.w3.org/2001/XMLSchema#' } );
+	isa_ok( $map, 'URI::NamespaceMap' );
+}
+{
+	my $map		= URI::NamespaceMap->new( namespace_map => { xsd => 'http://www.w3.org/2001/XMLSchema#' } );
+	isa_ok( $map, 'URI::NamespaceMap' );
+}
+{
+	my $map		= URI::NamespaceMap->new( namespace_map => { foaf => $foaf, rdf => $rdf } );
+	isa_ok( $map, 'URI::NamespaceMap' );
+}
+
 my $map		= URI::NamespaceMap->new( { foaf => $foaf, rdf => $rdf, xsd => 'http://www.w3.org/2001/XMLSchema#' } );
 isa_ok( $map, 'URI::NamespaceMap' );
 
-use Data::Dumper;
-warn Dumper($map->namespace_map);
+
+warn $map->dump;
 
 is_deeply($map->list_prefixes, ['foaf', 'rdf', 'xsd' ], 'Prefix listing OK');
 
