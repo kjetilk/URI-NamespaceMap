@@ -40,8 +40,6 @@ my $map		= URI::NamespaceMap->new( { foaf => $foaf, rdf => $rdf, xsd => 'http://
 isa_ok( $map, 'URI::NamespaceMap' );
 
 
-warn $map->dump;
-
 is_deeply([sort $map->list_prefixes], ['foaf', 'rdf', 'xsd' ], 'Prefix listing OK');
 
 is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
