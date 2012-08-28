@@ -10,6 +10,7 @@ has namespace_map => (
 											 remove_mapping => 'delete',
 											 namespace_uri => 'get',
 											 list_namespaces => 'values',
+											 list_prefixes => 'keys',
 											}
 							);
 
