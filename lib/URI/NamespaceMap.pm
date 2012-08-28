@@ -33,7 +33,35 @@ This module provides an object to manage multiple namespaces for creating L<URI:
 
 =head1 METHODS
 
+=over
 
+=item C<< new ( [ \%namespaces ] ) >>
+
+Returns a new namespace map object. You can pass a hash reference with
+mappings from local names to namespace URIs (given as string or
+L<RDF::Trine::Node::Resource>) or namespaces_map with a hashref.
+
+
+=item C<< add_mapping ( $name => $uri ) >>
+
+Adds a new namespace to the map. The namespace URI can be passed
+as string or a L<URI::Namespace> object.
+
+=item C<< remove_mapping ( $name ) >>
+
+Removes a namespace from the map given a prefix.
+
+=item C<< namespace_uri ( $name ) >>
+
+Returns the namespace object (if any) associated with the given prefix.
+
+=item C<< list_namespaces >>
+
+Returns an array of L<URI::Namespace> objects with all the namespaces.
+
+=item C<< list_prefixes >>
+
+Returns an array of prefixes.
 
 =cut
 
@@ -76,7 +104,7 @@ has namespace_map => (
    }
 );
 
-=over
+
 
 =item C<< uri ( $prefixed_name ) >>
 
@@ -111,6 +139,36 @@ sub AUTOLOAD {
     my ($name) = ($AUTOLOAD =~ /::(\w+)$/);
     $self->namespace_uri($name);
 }
+
+
+=head1 AUTHORS
+
+Chris Prather, C<< <chris@prather.org> >>
+Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
+Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
+
+=head1 BUGS
+
+Please report any bugs using L<github|https://github.com/perigrin/URI-NamespaceMap/issues>
+
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc URI::NamespaceMap
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2012 Gregory Todd Williams, Chris Prather and Kjetil Kjernsmo
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+
+=cut
+
+__PACKAGE__->meta->make_immutable();
 
 1;
 __END__
