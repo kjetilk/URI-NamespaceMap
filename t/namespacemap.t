@@ -78,9 +78,11 @@ isa_ok( $type, 'URI' );
 is( $type->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'resolving via uri method' );
 
 $uri		= $map->uri('foaf:');
+isa_ok( $uri, 'URI' );
+
 is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'resolving via uri method' );
 
 $uri		= $map->uri('foaf');
-isa_ok( $type, 'URI' );
+isa_ok( $uri, 'URI' );
 
 done_testing;
