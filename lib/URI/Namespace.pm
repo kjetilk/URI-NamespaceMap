@@ -10,7 +10,6 @@ around BUILDARGS => sub {
 };
 
 class_type 'URI';
-
 coerce 'URI' => from 'Str' => via { URI->new($_) };
 
 has uri => ( 
@@ -25,7 +24,7 @@ our $AUTOLOAD;
 sub AUTOLOAD {
   my $self = shift;
   my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-  return __PACKAGE__->new($self->uri . "$name");
+  return URI->new($self->uri . "$name");
 }
 1;
 __END__

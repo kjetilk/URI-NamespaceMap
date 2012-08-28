@@ -73,13 +73,13 @@ around BUILDARGS => sub {
   return { namespace_map => $parameters[0] };
 };
 
-subtype NamespaceMap => as HashRef => where { 
+subtype 'URI::NamespaceMap::Type::NamespaceMap' => as 'HashRef' => where { 
     my $h = $_;  
     return 1 unless values %$h; 
     return if grep { !blessed $_ } values %$h; 
     return 1
 };
-coerce NamespaceMap => from HashRef => via {
+coerce 'URI::NamespaceMap::Type::NamespaceMap' => from 'HashRef' => via {
     my $hash = $_;
     return {
          map {
@@ -91,7 +91,7 @@ coerce NamespaceMap => from HashRef => via {
 };
 
 has namespace_map => (
-    isa => 'NamespaceMap',
+    isa => 'URI::NamespaceMap::Type::NamespaceMap',
     traits => ['Hash'],
     coerce => 1,
     default => sub { {} },
@@ -135,9 +135,12 @@ sub uri {
 
 our $AUTOLOAD;
 sub AUTOLOAD {
-    my $self = shift;
+    my ($self, $arg) = @_;
     my ($name) = ($AUTOLOAD =~ /::(\w+)$/);
-    $self->namespace_uri($name);
+    my $ns = $self->namespace_uri($name);
+    return unless $ns;
+    return $ns->$arg if $arg;
+    return $ns;
 }
 
 
