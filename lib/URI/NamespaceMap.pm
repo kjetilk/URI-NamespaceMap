@@ -9,11 +9,11 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -67,42 +67,42 @@ Returns an array of prefixes.
 
 
 around BUILDARGS => sub {
-  my ($next, $self, @parameters) = @_;
-  return $self->$next(@parameters) if (@parameters > 1);
-  return $self->$next(@parameters) if (exists $parameters[0]->{namespace_map});
-  return { namespace_map => $parameters[0] };
+	my ($next, $self, @parameters) = @_;
+	return $self->$next(@parameters) if (@parameters > 1);
+	return $self->$next(@parameters) if (exists $parameters[0]->{namespace_map});
+	return { namespace_map => $parameters[0] };
 };
 
 subtype 'URI::NamespaceMap::Type::NamespaceMap' => as 'HashRef' => where { 
-    my $h = $_;  
-    return 1 unless values %$h; 
-    return if grep { !blessed $_ } values %$h; 
-    return 1
+	my $h = $_;  
+	return 1 unless values %$h; 
+	return if grep { !blessed $_ } values %$h; 
+	return 1
 };
 coerce 'URI::NamespaceMap::Type::NamespaceMap' => from 'HashRef' => via {
-    my $hash = $_;
-    return {
-         map {
-	      my $k = $_;
+	my $hash = $_;
+	return {
+			  map {
+				  my $k = $_;
               my $v = $hash->{$_}; 
               $k => blessed $v ? $v : URI::Namespace->new($v) 
-         } keys %$hash
-    };
+			  } keys %$hash
+			 };
 };
 
 has namespace_map => (
-    isa => 'URI::NamespaceMap::Type::NamespaceMap',
-    traits => ['Hash'],
-    coerce => 1,
-    default => sub { {} },
-    handles => {
-         add_mapping => 'set',
-         remove_mapping => 'delete',
-	 namespace_uri => 'get',
-	 list_namespaces => 'values',
-         list_prefixes => 'keys',
-   }
-);
+							 isa => 'URI::NamespaceMap::Type::NamespaceMap',
+							 traits => ['Hash'],
+							 coerce => 1,
+							 default => sub { {} },
+							 handles => {
+											 add_mapping => 'set',
+											 remove_mapping => 'delete',
+											 namespace_uri => 'get',
+											 list_namespaces => 'values',
+											 list_prefixes => 'keys',
+											}
+							);
 
 
 
@@ -115,15 +115,15 @@ Returns a URI for an abbreviated string such as 'foaf:Person'.
 =cut
 
 sub uri {
-	my $self	= shift;
-	my $abbr	= shift;
+	my $self = shift;
+	my $abbr = shift;
 	my $ns;
-	my $local	= "";
+	my $local = "";
 	if ($abbr =~ m/^([^:]*):(.*)$/) {
-		$ns	= $self->namespace_uri( $1 );
-		$local	= $2;
+		$ns = $self->namespace_uri( $1 );
+		$local = $2;
 	} else {
-		$ns	= $self->{ $abbr };
+		$ns = $self->{ $abbr };
 	}
 	return unless (blessed($ns));
 	if ($local ne '') {
@@ -137,12 +137,12 @@ no Moose::Util::TypeConstraints;
 
 our $AUTOLOAD;
 sub AUTOLOAD {
-    my ($self, $arg) = @_;
-    my ($name) = ($AUTOLOAD =~ /::(\w+)$/);
-    my $ns = $self->namespace_uri($name);
-    return unless $ns;
-    return $ns->$arg if $arg;
-    return $ns;
+	my ($self, $arg) = @_;
+	my ($name) = ($AUTOLOAD =~ /::(\w+)$/);
+	my $ns = $self->namespace_uri($name);
+	return unless $ns;
+	return $ns->$arg if $arg;
+	return $ns;
 }
 
 
@@ -184,3 +184,4 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 __END__
+
