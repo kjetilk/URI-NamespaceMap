@@ -5,7 +5,7 @@ use URI;
 
 =head1 NAME
 
-URI::NamespaceMap - Class holding a collection of namespaces
+URI::Namespace - A namespace URI class with autoload methods
 
 
 =head1 SYNOPSIS
