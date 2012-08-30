@@ -1,12 +1,18 @@
 @prefix :     <http://usefulinc.com/ns/doap#> .
 @prefix dc:   <http://purl.org/dc/terms/> .
-@prefix my:   <http://purl.org/NET/cpan-uri/dist/RDF-Generator-Void/> .
+@prefix my:   <http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-my:project :release my:v_0_01 .
+my:project :release my:v_0_01, my:v_0_02 .
+
+my:v_0_02
+    a           :Version ;
+    dc:issued   "2012-08-30"^^xsd:date ;
+    rdfs:label "Minor bugfixes."@en ;
+    :revision   "0.02"^^xsd:string .
 
 my:v_0_01
     a           :Version ;

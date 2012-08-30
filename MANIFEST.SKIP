@@ -56,7 +56,7 @@
 ^\.vimrc$
 
 # OS X
-\.DS_Store$
+^\.DS_Store$
 ^\.Trash/
 \B\._
 
@@ -75,8 +75,6 @@
 ^.devel-local$
 ^out$
 ^tmon.out$
-^old/
-^Old/
 
 # Author Notes
 ^notes
@@ -106,3 +104,4 @@
 ^inc/Module/Install/RDF.pm$
 ^inc/Module/Install/ReadmeFromPod.pm$
 ^inc/Module/Install/Repository.pm$
+^inc/Module/Install/TestBase.pm$
