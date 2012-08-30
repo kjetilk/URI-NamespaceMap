@@ -161,7 +161,7 @@ Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs using L<github|https://github.com/perigrin/URI-NamespaceMap/issues>
+Please report any bugs using L<github|https://github.com/kjetilk/URI-NamespaceMap/issues>
 
 
 =head1 SUPPORT
