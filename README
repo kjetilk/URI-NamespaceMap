@@ -2,7 +2,7 @@ NAME
     URI::NamespaceMap - Class holding a collection of namespaces
 
 VERSION
-    Version 0.01
+    Version 0.02
 
 SYNOPSIS
       use URI::NamespaceMap;
@@ -54,8 +54,7 @@ AUTHORS
     "<kjetilk@cpan.org>" Gregory Todd Williams, "<gwilliams@cpan.org>"
 
 BUGS
-    Please report any bugs using github
-    <https://github.com/perigrin/URI-NamespaceMap/issues>
+    Please report any bugs using <github>
 
 SUPPORT
     You can find documentation for this module with the perldoc command.
