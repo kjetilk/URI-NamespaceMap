@@ -7,7 +7,8 @@
     :perl_version_from _:main ;
     :version_from _:main ;
     :readme_from _:main ;
+    :recommends "RDF::NS", "RDF::Prefixes", "XML::CommonNS" ;
     :test_requires "Test::More 0.88" ;
-    :requires "Moose", "URI 1.52" .
+    :requires "Moose", "URI 1.52", "Module::Load::Conditional" .
 
 _:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
