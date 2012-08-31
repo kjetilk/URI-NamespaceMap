@@ -151,16 +151,21 @@ sub AUTOLOAD {
 
 sub _guess {
 	my ($self, @data) = @_;
-	my $xmlns = can_load( modules => 'XML::CommonNS');
-	my $rdfns = can_load( modules => 'RDF::NS');
-	my $rdfpr = can_load( modules => 'RDF::Prefixes');
+	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
+	my $rdfns = can_load( modules => { 'RDF::NS' => 0 } );
+	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
+
 	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($xmlns || $rdfns || $rdfpr);
 	my %namespaces;
+
 	foreach my $entry (@data) {
 		if ($entry =~ m/^[a-z]\w+/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
-			$namespaces{$entry} = XML::CommonNS->uri($entry) if ($xmlns);
+			if ($xmlns) {
+				use XML::CommonNS ':all';
+				$namespaces{$entry} = XML::CommonNS->uri(uc($entry));
+			}
 			if ((! $namespaces{$entry}) && $rdfns) {
 				my $ns = RDF::NS->new;
 				$namespaces{$entry} = $ns->SELECT($entry);
