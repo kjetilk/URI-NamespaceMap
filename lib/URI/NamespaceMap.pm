@@ -1,7 +1,8 @@
 package URI::NamespaceMap;
 use Moose;
 use Moose::Util::TypeConstraints;
-
+use Module::Load::Conditional qw[can_load];
+use Carp;
 
 =head1 NAME
 
@@ -35,7 +36,7 @@ This module provides an object to manage multiple namespaces for creating L<URI:
 
 =over
 
-=item C<< new ( [ \%namespaces ] ) >>
+=item C<< new ( [ \%namespaces | @prefixes | @uris ] ) >>
 
 Returns a new namespace map object. You can pass a hash reference with
 mappings from local names to namespace URIs (given as string or
@@ -68,6 +69,9 @@ Returns an array of prefixes.
 
 around BUILDARGS => sub {
 	my ($next, $self, @parameters) = @_;
+	if (ref($parameters[0]) eq 'ARRAY') {
+		return { namespace_map => $self->_guess(@{$parameters[0]}) };
+	}
 	return $self->$next(@parameters) if (@parameters > 1);
 	return $self->$next(@parameters) if (exists $parameters[0]->{namespace_map});
 	return { namespace_map => $parameters[0] };
@@ -143,6 +147,45 @@ sub AUTOLOAD {
 	return unless $ns;
 	return $ns->$arg if $arg;
 	return $ns;
+}
+
+sub _guess {
+	my ($self, @data) = @_;
+	my $xmlns = can_load( modules => 'XML::CommonNS');
+	my $rdfns = can_load( modules => 'RDF::NS');
+	my $rdfpr = can_load( modules => 'RDF::Prefixes');
+	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($xmlns || $rdfns || $rdfpr);
+	my %namespaces;
+	foreach my $entry (@data) {
+		if ($entry =~ m/^[a-z]\w+/i) {
+			# This is a prefix
+			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
+			$namespaces{$entry} = XML::CommonNS->uri($entry) if ($xmlns);
+			if ((! $namespaces{$entry}) && $rdfns) {
+				my $ns = RDF::NS->new;
+				$namespaces{$entry} = $ns->SELECT($entry);
+			}
+			carp "Cannot resolve '$entry'" unless $namespaces{$entry};
+		} else {
+			# Lets assume a URI string
+			carp "Cannot resolve '$entry' without RDF::NS or RDF::Prefixes" unless ($rdfns || $rdfpr);
+			my $prefix;
+			if ($rdfns) {
+				my $ns = RDF::NS->new;
+				$prefix = $ns->PREFIX($entry);
+			}
+			if ((! $prefix) && ($rdfpr)) {
+				my $context = RDF::Prefixes->new;
+				$prefix = $context->get_prefix($entry);
+			}
+			unless ($prefix) {
+				carp "Cannot resolve '$entry'";
+			} else {
+				$namespaces{$prefix} = $entry;
+			}
+		}
+		return \%namespaces;
+	}
 }
 
 
