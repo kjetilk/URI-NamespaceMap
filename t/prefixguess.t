@@ -17,7 +17,22 @@ unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
 {
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'rdf' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
+	ok($map->namespace_uri('foaf'), 'FOAF returns something');
+	ok($map->namespace_uri('rdf'), 'RDF returns something');
+	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
+	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
 }
+
+{
+	my $map		= URI::NamespaceMap->new( [ 'foaf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xsd' ] );
+	isa_ok( $map, 'URI::NamespaceMap' );
+	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
+	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
+	is_deeply([sort $map->list_prefixes], ['foaf', 'rdf', 'xsd' ], 'Prefix listing OK');
+
+}
+
+
 
 
 done_testing;

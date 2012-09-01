@@ -2,6 +2,7 @@ package URI::NamespaceMap;
 use Moose;
 use Moose::Util::TypeConstraints;
 use Module::Load::Conditional qw[can_load];
+use URI::Namespace;
 use Carp;
 
 =head1 NAME
@@ -14,7 +15,7 @@ Version 0.03_1
 
 =cut
 
-our $VERSION = '0.02_1';
+our $VERSION = '0.03_1';
 
 
 =head1 SYNOPSIS
@@ -164,7 +165,7 @@ sub _guess {
 			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
 			if ($xmlns) {
 				use XML::CommonNS ':all';
-				$namespaces{$entry} = XML::CommonNS->uri(uc($entry));
+				$namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
 			}
 			if ((! $namespaces{$entry}) && $rdfns) {
 				my $ns = RDF::NS->new;
@@ -189,8 +190,8 @@ sub _guess {
 				$namespaces{$prefix} = $entry;
 			}
 		}
-		return \%namespaces;
 	}
+	return \%namespaces;
 }
 
 
