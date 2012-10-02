@@ -80,6 +80,14 @@ isa_ok( $uri, 'URI' );
 
 is( $uri->as_string, 'http://xmlns.com/foaf/0.1/', 'resolving via uri method' );
 
+# abbreviate implicitly checks prefix_for
+
+is($map->abbreviate($map->foaf('Person')), 'foaf:Person', 'abbrev with prefix');
+
+is($map->abbreviate($map->uri(':foo')), ':foo', 'abbrev no prefix ');
+
+is($map->abbreviate('http://derp.net/foobar'), undef, 'abbrev no match');
+
 TODO: {
   local $TODO = 'Is just foaf as prefix something we should support?';
 	 $uri		= $map->uri('foaf');
