@@ -257,6 +257,10 @@ Chris Prather, C<< <chris@prather.org> >>
 Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
 Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
 
+=head1 CONTRIBUTORS
+
+Dorian Taylor
+
 =head1 BUGS
 
 Please report any bugs using L<github|https://github.com/kjetilk/URI-NamespaceMap/issues>
