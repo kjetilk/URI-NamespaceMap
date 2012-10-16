@@ -4,7 +4,6 @@
 @prefix : <http://purl.org/NET/cpan-uri/terms#> .
 
 <http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/project>
-    :perl_version_from _:main ;
     :version_from _:main ;
     :readme_from _:main ;
     :test_requires "Test::More 0.88" ;
