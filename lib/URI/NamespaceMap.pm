@@ -110,8 +110,6 @@ has namespace_map => (
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
 
-=back
-
 =cut
 
 sub uri {
@@ -243,6 +241,8 @@ sub AUTOLOAD {
 	return $ns;
 }
 
+
+=back
 
 =head1 WARNING
 
