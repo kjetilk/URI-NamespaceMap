@@ -17,7 +17,9 @@ my:v_0_03_1
       dcs:item
         [ rdfs:label "Adding reverse lookups, i.e. abbreviation and prefix_for."@en ; 
 	  a dcs:Addition ; 
-	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] , 
+	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] 
+	] .
+
  
 
 my:v_0_02
