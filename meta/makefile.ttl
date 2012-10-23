@@ -2,13 +2,12 @@
 # This file provides instructions for packaging.
 
 @prefix : <http://purl.org/NET/cpan-uri/terms#> .
+@base <http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/> .
 
-<http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/project>
-    :perl_version_from _:main ;
-    :version_from _:main ;
-    :readme_from _:main ;
-    :recommends "RDF::NS", "RDF::Prefixes", "XML::CommonNS" ;
+<project>
+    :version_from <project#main> ;
+    :readme_from <project#main> ;
     :test_requires "Test::More 0.88" ;
-    :requires "Moose", "URI 1.52", "Module::Load::Conditional" .
+    :requires "Moose", "URI 1.52" .
 
-_:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
+<project#main> <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .

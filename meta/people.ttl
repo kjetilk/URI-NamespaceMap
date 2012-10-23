@@ -17,3 +17,9 @@
     a           foaf:Person ;
     foaf:name   "Chris Prather" ;
     foaf:mbox   <mailto:chris@prather.org> .
+
+<http://doriantaylor.com/person/dorian-taylor>
+    a		foaf:Person ;
+    owl:sameAs  <http://purl.org/NET/cpan-uri/person/dorian> ;
+    foaf:name 	"Dorian Taylor" ;
+    foaf:mbox 	<mailto:dorian@cpan.org> .

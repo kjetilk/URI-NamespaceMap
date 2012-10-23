@@ -2,7 +2,7 @@ NAME
     URI::NamespaceMap - Class holding a collection of namespaces
 
 VERSION
-    Version 0.02
+    Version 0.04
 
 SYNOPSIS
       use URI::NamespaceMap;
@@ -43,6 +43,18 @@ METHODS
     "uri ( $prefixed_name )"
         Returns a URI for an abbreviated string such as 'foaf:Person'.
 
+    prefix_for "uri ($uri)"
+        Returns the associated prefix (or potentially multiple prefixes,
+        when called in list context) for the given URI.
+
+    abbreviate "uri ($uri)"
+        Complement to "namespace_uri". Returns the given URI in "foo:bar"
+        format or "undef" if it wasn't matched, therefore the idiom
+
+            my $str = $nsmap->abbreviate($uri_node) || $uri->as_string;
+
+        may be useful for certain serialization tasks.
+
 WARNING
     Avoid using the names 'can', 'isa', 'VERSION', and 'DOES' as namespace
     prefix, because these names are defined as method for every Perl object
@@ -52,6 +64,9 @@ WARNING
 AUTHORS
     Chris Prather, "<chris@prather.org>" Kjetil Kjernsmo,
     "<kjetilk@cpan.org>" Gregory Todd Williams, "<gwilliams@cpan.org>"
+
+CONTRIBUTORS
+    Dorian Taylor
 
 BUGS
     Please report any bugs using <github>

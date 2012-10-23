@@ -11,11 +11,11 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 0.03_1
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03_1';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS
@@ -114,8 +114,6 @@ has namespace_map => (
 =item C<< uri ( $prefixed_name ) >>
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
-
-=back
 
 =cut
 
@@ -293,6 +291,8 @@ sub _guess {
 }
 
 
+=back
+
 =head1 WARNING
 
 Avoid using the names 'can', 'isa', 'VERSION', and 'DOES' as namespace
@@ -305,6 +305,10 @@ forbidden. Names of methods of L<Moose::Object> must also be avoided.
 Chris Prather, C<< <chris@prather.org> >>
 Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
 Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
+
+=head1 CONTRIBUTORS
+
+Dorian Taylor
 
 =head1 BUGS
 
