@@ -6,15 +6,16 @@
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_03_1 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04 .
 
-my:v_0_03_1
+my:v_0_04
     a           :Version ;
-    dc:issued   "2012-10-16"^^xsd:date ;
+    dc:issued   "2012-10-23"^^xsd:date ;
     rdfs:label "Reverse lookups."@en ;
-    :revision   "0.03_1"^^xsd:string ;
+    :revision   "0.04"^^xsd:string ;
     dcs:changeset [
       dcs:item
+        [ rdfs:label "Stop using blank node in makefile.ttl to fix version_from."@en ; a dcs:Change ] , 
         [ rdfs:label "Adding reverse lookups, i.e. abbreviation and prefix_for."@en ; 
 	  a dcs:Addition ; 
 	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] 
