@@ -17,8 +17,8 @@ SKIP: {
 
 eval 'use Test::CPAN::Changes';
 SKIP: {
-	skip "Test::CPAN::Changes required for this test", 1 if ($@);
-	changes_ok();
+	skip "Test::CPAN::Changes required for this test", 4 if ($@);
+	changes_file_ok();
 }
 
-done_testing;
+done_testing();
