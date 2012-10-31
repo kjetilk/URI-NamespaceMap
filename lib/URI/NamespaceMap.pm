@@ -11,11 +11,11 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 0.03_1
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03_1';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS
@@ -115,8 +115,6 @@ has namespace_map => (
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
 
-=back
-
 =cut
 
 sub uri {
@@ -137,6 +135,104 @@ sub uri {
 		return $ns->uri
 	}
 }
+
+=item prefix_for C<< uri ($uri) >>
+
+Returns the associated prefix (or potentially multiple prefixes, when
+called in list context) for the given URI.
+
+=cut
+
+
+# turn the URI back into a string to mitigate unexpected behaviour
+sub _scrub_uri {
+    my $uri = shift;
+    if (ref $uri) {
+        if (blessed $uri) {
+            if ($uri->isa('URI::Namespace')) {
+                $uri = $uri->as_string;
+            }
+            elsif ($uri->isa('URI')) {
+                # it's probably not necessary to do this, but whatever
+                $uri = $uri->as_string;
+            }
+            elsif ($uri->isa('RDF::Trine::Node')) {
+                # it is, on the other hand, necessary to do this.
+                $uri = $uri->uri_value;
+            }
+            elsif ($uri->isa('RDF::Trine::Namespace')) {
+                # and this
+                $uri = $uri->uri->uri_value;
+            }
+            else {
+                # let's hope whatever was passed in has a string overload
+                $uri = "$uri";
+            }
+        }
+        else {
+            Carp::croak(sprintf "You probably didn't mean to pass this " .
+                            "an unblessed %s reference", ref $uri);
+        }
+    }
+
+    return $uri;
+}
+
+sub prefix_for {
+    my ($self, $uri) = @_;
+
+    $uri = _scrub_uri($uri);
+
+    my @candidates;
+    for my $k ($self->list_prefixes) {
+        my $v = $self->namespace_uri($k);
+
+        my $nsuri = $v->as_string;
+
+        # the input should always be longer than the namespace
+        next if length $nsuri > length $uri;
+
+        # candidate namespace must match exactly
+        my $cns = substr($uri, 0, length $nsuri);
+        push @candidates, $k if $cns eq $nsuri;
+    }
+
+    # make sure this behaves correctly when empty
+    return unless @candidates;
+
+    # if this returns more than one prefix, take the
+    # shortest/lexically lowest one.
+    @candidates = sort @candidates;
+
+    return wantarray ? @candidates : $candidates[0];
+}
+
+=item abbreviate C<< uri ($uri) >>
+
+Complement to L</namespace_uri>. Returns the given URI in C<foo:bar>
+format or C<undef> if it wasn't matched, therefore the idiom
+
+    my $str = $nsmap->abbreviate($uri_node) || $uri->as_string;
+
+may be useful for certain serialization tasks.
+
+=cut
+
+sub abbreviate {
+    my ($self, $uri) = @_;
+
+    $uri = _scrub_uri($uri);
+
+    my $prefix = $self->prefix_for($uri);
+
+    # XXX is this actually the most desirable behaviour?
+    return unless defined $prefix;
+
+    my $nsuri = _scrub_uri($self->namespace_uri($prefix));
+
+    return sprintf('%s:%s', $prefix, substr($uri, length $nsuri));
+}
+
 
 no Moose::Util::TypeConstraints;
 
@@ -195,6 +291,8 @@ sub _guess {
 }
 
 
+=back
+
 =head1 WARNING
 
 Avoid using the names 'can', 'isa', 'VERSION', and 'DOES' as namespace
@@ -207,6 +305,10 @@ forbidden. Names of methods of L<Moose::Object> must also be avoided.
 Chris Prather, C<< <chris@prather.org> >>
 Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
 Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
+
+=head1 CONTRIBUTORS
+
+Dorian Taylor
 
 =head1 BUGS
 

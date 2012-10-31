@@ -32,6 +32,23 @@ unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
 
 }
 
+{
+	my $map		= URI::NamespaceMap->new( [ 'foaf', 'skos' ] );
+	isa_ok( $map, 'URI::NamespaceMap' );
+	ok($map->namespace_uri('foaf'), 'FOAF returns something');
+	ok($map->namespace_uri('skos'), 'SKOS returns something');
+	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
+	is($map->namespace_uri('skos')->as_string, 'http://www.w3.org/2004/02/skos/core#', 'SKOS URI string OK');
+}
+
+{
+	my $map		= URI::NamespaceMap->new( [ 'http://example.org/ns/sdfhkd4f#', 'http://www.w3.org/2004/02/skos/core#' ] );
+	isa_ok( $map, 'URI::NamespaceMap' );
+	ok($map->namespace_uri('sdfhkd4f'), 'Keyboard cat returns something');
+	ok($map->namespace_uri('skos'), 'SKOS returns something');
+	is($map->namespace_uri('sdfhkd4f')->as_string, 'http://example.org/ns/sdfhkd4f#', 'Keyboard cat URI string OK');
+	is($map->namespace_uri('skos')->as_string, 'http://www.w3.org/2004/02/skos/core#', 'SKOS URI string OK');
+}
 
 
 

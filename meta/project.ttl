@@ -22,6 +22,7 @@ my:project
     :maintainer <http://www.kjetil.kjernsmo.net/foaf#me> , 
     		<http://kasei.us/about/foaf.xrdf#greg> ,
 		<http://purl.org/NET/cpan-uri/person/perigrin> ;
+    :developer  <http://doriantaylor.com/person/dorian-taylor> ;
     :repository <https://github.com/kjetilk/URI-NamespaceMap/> ;
     :bug-database <https://github.com/kjetilk/URI-NamespaceMap/issues> .
 
