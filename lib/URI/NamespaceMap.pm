@@ -1,6 +1,7 @@
 package URI::NamespaceMap;
 use Moose;
 use Moose::Util::TypeConstraints;
+use URI::Namespace;
 
 
 =head1 NAME
