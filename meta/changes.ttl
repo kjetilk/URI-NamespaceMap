@@ -6,7 +6,17 @@
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06 .
+
+my:v_0_06
+    a           :Version ;
+    dc:issued   "2012-11-28"^^xsd:date ;
+    rdfs:label "Bugfix release."@en ;
+    :revision   "0.06"^^xsd:string ;
+    dcs:changeset [
+      dcs:item
+        [ rdfs:label "URI::Namespace must be used from URI::NamespaceMap."@en ; a dcs:Bugfix ] 
+	] .
 
 my:v_0_04
     a           :Version ;
