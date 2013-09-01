@@ -24,7 +24,10 @@ my:project
     		<http://kasei.us/about/foaf.xrdf#greg> ,
 		<http://purl.org/NET/cpan-uri/person/perigrin> ;
     :developer  <http://doriantaylor.com/person/dorian-taylor> ;
-    :repository <https://github.com/kjetilk/URI-NamespaceMap/> ;
+    :repository [ 
+    		  a :GitRepository ; 
+		  :browse <https://github.com/kjetilk/URI-NamespaceMap/>  
+		] ;
     :bug-database <https://github.com/kjetilk/URI-NamespaceMap/issues> .
 
 
