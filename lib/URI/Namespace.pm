@@ -70,11 +70,16 @@ has uri => (
 	 handles => ['as_string', 'as_iri', 'canonical', 'eq', 'abs', 'rel']
 );
 
+sub _uri {
+    my ($self, $name) = @_;
+    return URI->new($self->uri . "$name");
+}
+
 our $AUTOLOAD;
 sub AUTOLOAD {
   my $self = shift;
   my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-  return URI->new($self->uri . "$name");
+  return $self->_uri($name);
 }
 
 
