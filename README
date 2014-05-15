@@ -18,7 +18,7 @@ DESCRIPTION
     creating URI::Namespace objects and for serializing.
 
 METHODS
-    "new ( [ \%namespaces ] )"
+    "new ( [ \%namespaces | @prefixes | @uris ] )"
         Returns a new namespace map object. You can pass a hash reference
         with mappings from local names to namespace URIs (given as string or
         RDF::Trine::Node::Resource) or namespaces_map with a hashref.
