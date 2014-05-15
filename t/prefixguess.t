@@ -23,6 +23,8 @@ unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
 	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
 }
 
+TODO: {
+	local $TODO = "This is work in progress.";
 {
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xsd' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
@@ -49,7 +51,7 @@ unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
 	is($map->namespace_uri('sdfhkd4f')->as_string, 'http://example.org/ns/sdfhkd4f#', 'Keyboard cat URI string OK');
 	is($map->namespace_uri('skos')->as_string, 'http://www.w3.org/2004/02/skos/core#', 'SKOS URI string OK');
 }
-
+}
 
 
 done_testing;
