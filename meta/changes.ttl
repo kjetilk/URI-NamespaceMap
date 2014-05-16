@@ -15,9 +15,9 @@ my:v_0_07_1
     :revision   "0.07_1"^^xsd:string ;
     dcs:changeset [
       dcs:item
-        [ rdfs:label "Prefix guessing user RDF::NS, RDF::Prefixes or XML::CommonNS."@en ; a dcs:Addition ] 
+        [ rdfs:label "Prefix guessing user RDF::NS, RDF::Prefixes or XML::CommonNS."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Fix breakage in terms with hyphens."@en ; a dcs:Bugfix ;
-	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] 
+	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ]
 	] .
 
 my:v_0_06
