@@ -248,7 +248,7 @@ sub AUTOLOAD {
 
 sub _guess {
 	my ($self, @data) = @_;
-	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
+	my $xmlns = 0; #can_load( modules => { 'XML::CommonNS' => 0 } );
 	my $rdfns = can_load( modules => { 'RDF::NS' => 0 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
 
@@ -256,16 +256,13 @@ sub _guess {
 	my %namespaces;
 
 	foreach my $entry (@data) {
-	  warn "DHUAT " . $entry;
 
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
 			if ($xmlns) {
-                use XML::CommonNS ':all';
-				#require XML::CommonNS;
-                #XML::CommonNS->import(':all');
-				$namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
+			  use XML::CommonNS ':all';
+			  $namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
 			}
 			if ((! $namespaces{$entry}) && $rdfns) {
 				my $ns = RDF::NS->new;
