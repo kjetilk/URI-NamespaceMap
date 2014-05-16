@@ -324,7 +324,7 @@ You can find documentation for this module with the perldoc command.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2012 Gregory Todd Williams, Chris Prather and Kjetil Kjernsmo
+Copyright 2012-2014 Gregory Todd Williams, Chris Prather and Kjetil Kjernsmo
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
