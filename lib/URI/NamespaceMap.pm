@@ -261,7 +261,8 @@ sub _guess {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
 			if ($xmlns) {
-			  use XML::CommonNS ':all';
+			  require XML::CommonNS;
+			  XML::CommonNS->import(':all');
 			  $namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
 			}
 			if ((! $namespaces{$entry}) && $rdfns) {
