@@ -256,7 +256,9 @@ sub _guess {
 	my %namespaces;
 
 	foreach my $entry (@data) {
-		if ($entry =~ m/^[a-z]\w+/i) {
+	  warn "DHUAT " . $entry;
+
+		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
 			if ($xmlns) {
