@@ -248,7 +248,7 @@ sub AUTOLOAD {
 
 sub _guess {
 	my ($self, @data) = @_;
-	my $xmlns = 0; #can_load( modules => { 'XML::CommonNS' => 0 } );
+	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
 	my $rdfns = can_load( modules => { 'RDF::NS' => 0 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
 
