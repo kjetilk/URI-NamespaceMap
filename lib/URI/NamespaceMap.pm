@@ -259,7 +259,7 @@ sub _guess {
 
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
-			carp "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
+			warn "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
 			if ($xmlns) {
 			  require XML::CommonNS;
 			  XML::CommonNS->import(':all');
@@ -269,10 +269,10 @@ sub _guess {
 				my $ns = RDF::NS->new;
 				$namespaces{$entry} = $ns->SELECT($entry);
 			}
-			carp "Cannot resolve '$entry'" unless $namespaces{$entry};
+			warn "Cannot resolve '$entry'" unless $namespaces{$entry};
 		} else {
 			# Lets assume a URI string
-			carp "Cannot resolve '$entry' without RDF::NS or RDF::Prefixes" unless ($rdfns || $rdfpr);
+			warn "Cannot resolve '$entry' without RDF::NS or RDF::Prefixes" unless ($rdfns || $rdfpr);
 			my $prefix;
 			if ($rdfns) {
 				my $ns = RDF::NS->new;
@@ -283,7 +283,7 @@ sub _guess {
 				$prefix = $context->get_prefix($entry);
 			}
 			unless ($prefix) {
-				carp "Cannot resolve '$entry'";
+				warn "Cannot resolve '$entry'";
 			} else {
 				$namespaces{$prefix} = $entry;
 			}
