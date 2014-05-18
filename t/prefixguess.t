@@ -34,7 +34,7 @@ SKIP: {
 }
 
 SKIP: {
-  skip "RDF::Prefixes or RDF::NS needed", 5 unless 0;#(defined $rdfns || defined $rdfpr);
+  skip "RDF::NS needed", 5 unless (defined $rdfns);
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xsd' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
