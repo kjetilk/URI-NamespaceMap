@@ -6,13 +6,13 @@
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_07_1 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_07_2 .
 
-my:v_0_07_1
+my:v_0_07_2
     a           :Version ;
-    dc:issued   "2014-05-16"^^xsd:date ;
+    dc:issued   "2014-05-18"^^xsd:date ;
     rdfs:label "Dev release of prefix guessing code."@en ;
-    :revision   "0.07_1"^^xsd:string ;
+    :revision   "0.07_2"^^xsd:string ;
     dcs:changeset [
       dcs:item
         [ rdfs:label "Prefix guessing user RDF::NS, RDF::Prefixes or XML::CommonNS."@en ; a dcs:Addition ] ,
