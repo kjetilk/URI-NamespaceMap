@@ -4,6 +4,7 @@ use Moose::Util::TypeConstraints;
 use Module::Load::Conditional qw[can_load];
 use URI::Namespace;
 use Carp;
+use Try::Tiny;
 
 =head1 NAME
 
@@ -263,7 +264,9 @@ sub _guess {
 			if ($xmlns) {
 			  require XML::CommonNS;
 			  XML::CommonNS->import(':all');
-			  $namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
+			  try {
+				 $namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
+			  }; # Then, XML::CommonNS doesn't have the prefix, which is OK, we just continue
 			}
 			if ((! $namespaces{$entry}) && $rdfns) {
 				my $ns = RDF::NS->new;

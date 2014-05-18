@@ -9,7 +9,7 @@
     :readme_from <project#main> ;
     :all_from <project#main> ;
     :test_requires "Test::More 0.88", "Test::Exception";
-    :requires "Moose", "URI 1.52" ;
+    :requires "Moose", "URI 1.52", "Try::Tiny" ;
     :recommends "RDF::NS", "RDF::Prefixes", "XML::CommonNS" .
 
 <project#main> <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
