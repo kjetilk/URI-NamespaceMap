@@ -18,3 +18,5 @@ use_ok(' URI::NamespaceMap');
 throws_ok {
   	my $map		= URI::NamespaceMap->new( [ 'foaf', 'rdf' ] );
 } qr/To resolve an array, you need either/, 'Throws OK if no prefix module is installed.';
+
+done_testing;
