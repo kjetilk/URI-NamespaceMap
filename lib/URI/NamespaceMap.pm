@@ -12,11 +12,11 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 0.07_1
+Version 0.07_2
 
 =cut
 
-our $VERSION = '0.07_1';
+our $VERSION = '0.07_2';
 
 
 =head1 SYNOPSIS
