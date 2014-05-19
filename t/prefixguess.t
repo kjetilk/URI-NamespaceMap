@@ -5,7 +5,7 @@ use strict;
 use Module::Load::Conditional qw[check_install];
 
 my $xmlns = check_install( module => 'XML::CommonNS');
-my $rdfns = check_install( module => 'RDF::NS');
+my $rdfns = check_install( module => 'RDF::NS', version => 20130802);
 my $rdfpr = check_install( module => 'RDF::Prefixes');
 
 unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
