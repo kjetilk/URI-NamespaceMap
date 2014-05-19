@@ -12,11 +12,11 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 0.07_2
+Version 0.08
 
 =cut
 
-our $VERSION = '0.07_2';
+our $VERSION = '0.08';
 
 
 =head1 SYNOPSIS
@@ -42,7 +42,11 @@ This module provides an object to manage multiple namespaces for creating L<URI:
 
 Returns a new namespace map object. You can pass a hash reference with
 mappings from local names to namespace URIs (given as string or
-L<RDF::Trine::Node::Resource>) or namespaces_map with a hashref.
+L<RDF::Trine::Node::Resource>) or namespaces_map with a hashref. You
+may also pass an arrayref containing just prefixes and/or namespace URIs,
+and the module will try to guess the missing part. To use this
+feature, you need L<RDF::NS>, L<XML::CommonNS> or L<RDF::Prefixes>, or
+preferably all of them.
 
 
 =item C<< add_mapping ( $name => $uri ) >>
@@ -250,7 +254,7 @@ sub AUTOLOAD {
 sub _guess {
 	my ($self, @data) = @_;
 	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
-	my $rdfns = can_load( modules => { 'RDF::NS' => 0 } );
+	my $rdfns = can_load( modules => { 'RDF::NS' => 20130802 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
 
 	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($xmlns || $rdfns || $rdfpr);
