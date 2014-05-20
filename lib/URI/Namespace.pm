@@ -56,30 +56,30 @@ See L<URI::NamespaceMap> for further details about authors, license, etc.
 around BUILDARGS => sub {
     my ($next, $self, @parameters) = @_;
     return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
-    return { uri => $parameters[0] };
+    return { _uri => $parameters[0] };
 };
 
 class_type 'URI';
 coerce 'URI' => from 'Str' => via { URI->new($_) };
 
-has uri => ( 
-    is => 'ro', 
-    isa => 'URI', 
+has _uri => ( 
+    isa => 'URI',
 	 coerce => 1,
     required => 1,
+	 reader => '_uri',
 	 handles => ['as_string', 'as_iri', 'canonical', 'eq', 'abs', 'rel']
 );
 
-sub _uri {
+sub uri {
     my ($self, $name) = @_;
-    return URI->new($self->uri . "$name");
+    return URI->new($self->_uri . "$name");
 }
 
 our $AUTOLOAD;
 sub AUTOLOAD {
   my $self = shift;
   my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-  return $self->_uri($name);
+  return $self->uri($name);
 }
 
 
