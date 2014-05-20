@@ -31,9 +31,11 @@ etc. The local part can be used as a method, these are autoloaded.
 
 This is the constructor. You may pass a string with a URI or a URI object.
 
-=item C<< uri >>
+=item C<< uri ( [ $local_part ] )>>
 
-Returns a L<URI> object with the namespace URI.
+Returns a L<URI> object with the namespace URI. Optionally, the method
+can take a local part as argument, in which case, it will return the
+namespace URI with the local part appended.
 
 =back
 
