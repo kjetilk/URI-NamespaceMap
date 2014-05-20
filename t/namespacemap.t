@@ -107,10 +107,5 @@ TODO: {
 	} qr/prohibited as local part/, "Throws if isa is used as local part.";
 }
 
-TODO: {
-  local $TODO = 'Is just foaf as prefix something we should support?';
-	 $uri		= $map->uri('foaf');
-  isa_ok( $uri, 'URI' );
-}
 
 done_testing;
