@@ -135,9 +135,9 @@ sub uri {
 	}
 	return unless (blessed($ns));
 	if ($local ne '') {
-		return $ns->_uri($local);
+		return $ns->uri($local);
 	} else {
-		return $ns->uri
+		return $ns->_uri
 	}
 }
 
