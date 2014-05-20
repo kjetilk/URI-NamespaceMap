@@ -1,4 +1,5 @@
 use Test::More;
+use Test::Exception;
 
 use strict;
 use URI;
@@ -37,6 +38,15 @@ my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 	my $map		= URI::NamespaceMap->new( namespace_map => { foaf => $foaf, rdf => $rdf } );
 	isa_ok( $map, 'URI::NamespaceMap' );
 }
+
+TODO: {
+	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
+	throws_ok {
+		my $map		= URI::NamespaceMap->new( { isa => 'http://example.org/ns/isa#' } );
+	} qr/prohibited as local part/, "Throws if isa is used as local part.";
+}
+
+
 
 my $map		= URI::NamespaceMap->new( { foaf => $foaf, rdf => $rdf, xsd => 'http://www.w3.org/2001/XMLSchema#' } );
 isa_ok( $map, 'URI::NamespaceMap' );
@@ -89,6 +99,13 @@ is($map->abbreviate($map->foaf('Person')), 'foaf:Person', 'abbrev with prefix');
 is($map->abbreviate($map->uri(':foo')), ':foo', 'abbrev no prefix ');
 
 is($map->abbreviate('http://derp.net/foobar'), undef, 'abbrev no match');
+
+TODO: {
+	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
+	throws_ok {
+		$map->add_mapping( isa => 'http://example.org/ns/isa#' );
+	} qr/prohibited as local part/, "Throws if isa is used as local part.";
+}
 
 TODO: {
   local $TODO = 'Is just foaf as prefix something we should support?';
