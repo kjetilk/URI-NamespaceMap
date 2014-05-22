@@ -74,7 +74,11 @@ has _uri => (
 
 sub uri {
     my ($self, $name) = @_;
-    return URI->new($self->_uri . "$name");
+	 if (defined($name)) {
+		return URI->new($self->_uri . "$name");
+	 } else {
+		return URI->new($self->_uri);
+	 }
 }
 
 our $AUTOLOAD;
