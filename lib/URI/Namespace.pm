@@ -2,6 +2,7 @@ package URI::Namespace;
 use Moose;
 use Moose::Util::TypeConstraints;
 use URI;
+use IRI;
 
 =head1 NAME
 
@@ -14,8 +15,6 @@ URI::Namespace - A namespace URI class with autoload methods
   my $foaf = URI::Namespace->new( 'http://xmlns.com/foaf/0.1/' );
   print $foaf->as_string;
   print $foaf->name;
-
-
 
 =head1 DESCRIPTION
 
@@ -56,36 +55,47 @@ See L<URI::NamespaceMap> for further details about authors, license, etc.
 =cut
 
 around BUILDARGS => sub {
-    my ($next, $self, @parameters) = @_;
-    return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
-    return { _uri => $parameters[0] };
+	my ($next, $self, @parameters) = @_;
+	return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
+	return { _uri => $parameters[0] };
 };
 
-class_type 'URI';
-coerce 'URI' => from 'Str' => via { URI->new($_) };
+coerce 'IRI' => from 'Str' => via { IRI->new($_) };
 
 has _uri => ( 
-    isa => 'URI',
-	 coerce => 1,
-    required => 1,
-	 reader => '_uri',
-	 handles => ['as_string', 'as_iri', 'canonical', 'eq', 'abs', 'rel']
+	isa => 'IRI',
+	coerce => 1,
+	required => 1,
+	reader => '_uri',
+	handles => ['as_string']
 );
 
+# TODO: handle URI methods that IRI doesn't do: as_iri, canonical, eq, abs, rel
+
+sub iri {
+	my ($self, $name) = @_;
+	if (defined($name)) {
+		return IRI->new($self->_uri->as_string . "$name");
+	} else {
+		return $self->_uri;
+	}
+}
+
 sub uri {
-    my ($self, $name) = @_;
-	 if (defined($name)) {
-		return URI->new($self->_uri . "$name");
-	 } else {
-		return URI->new($self->_uri);
-	 }
+	my ($self, $name) = @_;
+	my $iri	= $self->_uri->as_string;
+	if (defined($name)) {
+		return URI->new($iri . "$name");
+	} else {
+		return URI->new($iri);
+	}
 }
 
 our $AUTOLOAD;
 sub AUTOLOAD {
-  my $self = shift;
-  my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-  return $self->uri($name);
+	my $self = shift;
+	my ($name) = $AUTOLOAD =~ /::(\w+)$/;
+	return $self->uri($name);
 }
 
 

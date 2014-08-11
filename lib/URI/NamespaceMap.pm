@@ -137,7 +137,7 @@ sub uri {
 	if ($local ne '') {
 		return $ns->uri($local);
 	} else {
-		return $ns->_uri
+		return URI->new($ns->as_string);
 	}
 }
 
