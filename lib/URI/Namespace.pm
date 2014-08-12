@@ -2,7 +2,7 @@ package URI::Namespace;
 use Moose;
 use Moose::Util::TypeConstraints;
 use URI;
-use IRI;
+use IRI 0.003;
 
 =head1 NAME
 
@@ -65,8 +65,6 @@ around BUILDARGS => sub {
 	return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
 	return { _uri => $parameters[0] };
 };
-
-coerce 'IRI' => from 'Str' => via { IRI->new($_) };
 
 has _uri => ( 
 	isa => 'IRI',
