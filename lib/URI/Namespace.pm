@@ -77,31 +77,6 @@ has _uri => (
 	}
 );
 
-
-sub abs {
-	my $self	= shift;
-	my $uri		= $self->uri;
-	return $uri->abs( @_ );
-}
-
-sub rel {
-	my $self	= shift;
-	my $uri		= $self->uri;
-	return $uri->rel( @_ );
-}
-
-sub eq {
-	my $self	= shift;
-	my $uri		= $self->uri;
-	return $uri->eq( @_ );
-}
-
-sub canonical {
-	my $self	= shift;
-	my $uri		= $self->uri;
-	return $uri->canonical( @_ );
-}
-
 sub iri {
 	my ($self, $name) = @_;
 	if (defined($name)) {
@@ -119,6 +94,11 @@ sub uri {
 	} else {
 		return URI->new($iri);
 	}
+}
+
+my $meta = Moose::Util::find_meta(__PACKAGE__);
+for my $method (qw/ abs rel eq canonical /) {
+	$meta->add_method($method, sub { shift->uri->$method(@_) });
 }
 
 our $AUTOLOAD;
