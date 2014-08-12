@@ -6,7 +6,7 @@ use IRI;
 
 =head1 NAME
 
-URI::Namespace - A namespace URI class with autoload methods
+URI::Namespace - A namespace URI/IRI class with autoload methods
 
 
 =head1 SYNOPSIS
@@ -18,7 +18,7 @@ URI::Namespace - A namespace URI class with autoload methods
 
 =head1 DESCRIPTION
 
-This module provides an object with a URI attribute, typically used
+This module provides an object with a URI/IRI attribute, typically used
 prefix-namespace pairs, typically used in XML, RDF serializations,
 etc. The local part can be used as a method, these are autoloaded.
 
@@ -26,15 +26,21 @@ etc. The local part can be used as a method, these are autoloaded.
 
 =over
 
-=item C<< new ( $string | URI ) >>
+=item C<< new ( $string | URI | IRI ) >>
 
 This is the constructor. You may pass a string with a URI or a URI object.
 
 =item C<< uri ( [ $local_part ] ) >>
 
-Returns a L<URI> object with the namespace URI. Optionally, the method
+Returns a L<URI> object with the namespace IRI. Optionally, the method
 can take a local part as argument, in which case, it will return the
 namespace URI with the local part appended.
+
+=item C<< iri ( [ $local_part ] ) >>
+
+Returns a L<IRI> object with the namespace IRI. Optionally, the method
+can take a local part as argument, in which case, it will return the
+namespace IRI with the local part appended.
 
 =back
 
@@ -67,10 +73,36 @@ has _uri => (
 	coerce => 1,
 	required => 1,
 	reader => '_uri',
-	handles => ['as_string']
+	handles => {
+		'as_string' => 'as_string',
+		'as_iri' => 'as_string',
+	}
 );
 
-# TODO: handle URI methods that IRI doesn't do: as_iri, canonical, eq, abs, rel
+
+sub abs {
+	my $self	= shift;
+	my $uri		= $self->uri;
+	return $uri->abs( @_ );
+}
+
+sub rel {
+	my $self	= shift;
+	my $uri		= $self->uri;
+	return $uri->rel( @_ );
+}
+
+sub eq {
+	my $self	= shift;
+	my $uri		= $self->uri;
+	return $uri->eq( @_ );
+}
+
+sub canonical {
+	my $self	= shift;
+	my $uri		= $self->uri;
+	return $uri->canonical( @_ );
+}
 
 sub iri {
 	my ($self, $name) = @_;
