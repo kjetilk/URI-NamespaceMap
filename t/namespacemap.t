@@ -68,6 +68,16 @@ isa_ok( $ns, 'URI::Namespace' );
 $map->remove_mapping( 'xsd' );
 is( $map->xsd, undef, 'removed namespace' );
 
+isa_ok($ns->uri, 'URI');
+isa_ok($ns->iri, 'IRI');
+
+# ensure that methods delegated to URI are working...
+is($ns->rel('http://www.w3.org/2001/'), 'XMLSchema#', 'namespace delegates rel method');
+is($ns->abs('http://example.org/'), 'http://www.w3.org/2001/XMLSchema#', 'namespace delegates abs method');
+ok($ns->eq(URI->new('http://www.w3.org/2001/XMLSchema#')), 'namespace delegates eq method');
+is($map->foaf->canonical, 'http://xmlns.com/foaf/0.1/', 'namespace delegates canonical method');
+
+
 $map = URI::NamespaceMap->new( { foaf => 'http://xmlns.com/foaf/0.1/', '' => 'http://example.org/' } );
 isa_ok( $map, 'URI::NamespaceMap' );
 is ( $map->uri(':foo')->as_string, 'http://example.org/foo', 'empty prefix' );
