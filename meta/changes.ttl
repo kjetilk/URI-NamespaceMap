@@ -5,10 +5,27 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0.08, my:v_0.10 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_12 .
 
-my:v_0.10
+my:v_0_12
+    a           :Version ;
+    dc:issued   "2014-08-14"^^xsd:date ;
+    rdfs:label "Support IRI module."@en ;
+    :revision   "0.12"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.12> ;
+    dcs:changeset [
+      dcs:item
+        [ rdfs:label "Support the new IRI module."@en ; 
+	  dcs:blame <http://kasei.us/about/foaf.xrdf#greg> ;
+	  a dcs:Addition ] ,
+	[ rdfs:label "Silence warnings when URI doesn't have local part."@en ; a dcs:Bugfix ] ,
+	[ rdfs:label "Warn the user in test when they have too old RDF::NS."@en ; a dcs:Addition ] , 
+	[ rdfs:label "Link Debian packages in metadata."@en ; a dcs:Addition ] 		 
+	] .
+
+my:v_0_10
     a           :Version ;
     dc:issued   "2014-05-21"^^xsd:date ;
     rdfs:label "Compatibility with RDF::Trine::NamespaceMap."@en ;
@@ -20,7 +37,7 @@ my:v_0.10
 	  a dcs:Addition ] 
 	] .
 
-my:v_0.08
+my:v_0_08
     a           :Version ;
     dc:issued   "2014-05-19"^^xsd:date ;
     rdfs:label "Prefix guessing."@en ;
