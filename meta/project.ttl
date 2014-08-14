@@ -21,6 +21,8 @@ my:project
     :created    "2012-08-27"^^xsd:date ;
     :license        <http://dev.perl.org/licenses/> ;	
     :homepage   <https://metacpan.org/module/URI::NamespaceMap> ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstream> ;
+    rdfs:seeAlso <http://packages.qa.debian.org/libr/liburi-namespacemap-perl.ttl> ;
     :programming-language "Perl" ;
     :maintainer <http://www.kjetil.kjernsmo.net/foaf#me> , 
     		<http://kasei.us/about/foaf.xrdf#greg> ,
