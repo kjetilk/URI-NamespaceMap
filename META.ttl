@@ -45,7 +45,7 @@ dist:project
 	doap:release      dist:v_0_06;
 	doap:release      dist:v_0_08;
 	doap:release      dist:v_0_10;
-	doap:release      dist:v_0_11_2;
+	doap:release      dist:v_0_11_3;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/kjetilk/URI-NamespaceMap/>;
@@ -126,7 +126,7 @@ dist:v_0_10
 	];
 	doap:revision     "0.10"^^xsd:string.
 
-dist:v_0_11_2
+dist:v_0_11_3
 	a                 doap:Version;
 	rdfs:label        "Support IRI module."@en;
 	dc:issued         "2014-09-27"^^xsd:date;
@@ -149,7 +149,7 @@ dist:v_0_11_2
 			rdfs:label "Use Types::URI."@en;
 		];
 	];
-	doap:revision     "0.11_2"^^xsd:string.
+	doap:revision     "0.11_3"^^xsd:string.
 
 <http://doriantaylor.com/person/dorian-taylor>
 	a                 foaf:Person;

@@ -2,7 +2,7 @@ NAME
     URI::NamespaceMap - Class holding a collection of namespaces
 
 VERSION
-    Version 0.11_2
+    Version 0.11_3
 
 SYNOPSIS
       use URI::NamespaceMap;
