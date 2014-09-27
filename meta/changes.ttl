@@ -7,13 +7,13 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_11_2 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_11_3 .
 
-my:v_0_11_2
+my:v_0_11_3
     a           :Version ;
     dc:issued   "2014-09-27"^^xsd:date ;
     rdfs:label "Support IRI module."@en ;
-    :revision   "0.11_2"^^xsd:string ;
+    :revision   "0.11_3"^^xsd:string ;
 #    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.12> ;
     dcs:changeset [
       dcs:item
