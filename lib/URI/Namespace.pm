@@ -3,6 +3,7 @@ use Moose;
 use Moose::Util::TypeConstraints;
 use URI;
 use IRI 0.003;
+use Types::URI 0.004 -all;
 
 =head1 NAME
 
@@ -67,7 +68,7 @@ around BUILDARGS => sub {
 };
 
 has _uri => ( 
-    isa => 'IRI',
+    isa => Iri,
     coerce => 1,
     required => 1,
     reader => '_uri',
