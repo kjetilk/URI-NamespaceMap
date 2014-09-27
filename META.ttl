@@ -25,6 +25,7 @@ dist:project
 	cpant:requires    "Module::Load::Conditional";
 	cpant:requires    "Moose";
 	cpant:requires    "Try::Tiny";
+	cpant:requires    "Types::URI 0.004";
 	cpant:requires    "URI 1.52";
 	cpant:test_requires "Test::Exception";
 	cpant:test_requires "Test::More 0.88";
@@ -44,7 +45,7 @@ dist:project
 	doap:release      dist:v_0_06;
 	doap:release      dist:v_0_08;
 	doap:release      dist:v_0_10;
-	doap:release      dist:v_0_12;
+	doap:release      dist:v_0_11_1;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/kjetilk/URI-NamespaceMap/>;
@@ -125,10 +126,10 @@ dist:v_0_10
 	];
 	doap:revision     "0.10"^^xsd:string.
 
-dist:v_0_12
+dist:v_0_11_1
 	a                 doap:Version;
 	rdfs:label        "Support IRI module."@en;
-	dc:issued         "2014-09-26"^^xsd:date;
+	dc:issued         "2014-09-27"^^xsd:date;
 	dcs:changeset     [
 		dcs:item [
 			a dcs:Addition;
@@ -145,11 +146,10 @@ dist:v_0_12
 		];
 		dcs:item [
 			a dcs:Addition;
-			rdfs:label "Link Debian packages in metadata."@en;
+			rdfs:label "Use Types::URI."@en;
 		];
 	];
-	doap:revision     "0.12"^^xsd:string;
-	owl:sameAs        <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.12>.
+	doap:revision     "0.11_1"^^xsd:string.
 
 <http://doriantaylor.com/person/dorian-taylor>
 	a                 foaf:Person;
