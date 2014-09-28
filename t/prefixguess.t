@@ -21,7 +21,7 @@ $diag .= (defined $rdfpr) ? " with " : " without ";
 $diag .= "RDF::Prefixes.";
 note($diag);
 
-use_ok(' URI::NamespaceMap') ;
+use_ok('URI::NamespaceMap') ;
 
 SKIP: {
   skip "XML::CommonNS or RDF::NS needed", 5 unless(defined $xmlns || defined $rdfns);
