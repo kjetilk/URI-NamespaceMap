@@ -22,7 +22,7 @@ my:v_0_12
 	  a dcs:Addition ] ,
 	[ rdfs:label "Silence warnings when URI doesn't have local part."@en ; a dcs:Bugfix ] ,
 	[ rdfs:label "Warn the user in test when they have too old RDF::NS."@en ; a dcs:Addition ] ,
-	[ rdfs:label "Use Types::URI."@en ; a dcs:Addition ]  
+	[ rdfs:label "Use Types::URI."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Link Debian packages in metadata."@en ; a dcs:Addition ] 		 
 	] .
 
