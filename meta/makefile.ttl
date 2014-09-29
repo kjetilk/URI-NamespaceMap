@@ -1,15 +1,20 @@
-
 # This file provides instructions for packaging.
 
-@prefix : <http://purl.org/NET/cpan-uri/terms#> .
+@prefix : <http://ontologi.es/doap-deps#> .
 @base <http://purl.org/NET/cpan-uri/dist/URI-NamespaceMap/> .
 
 <project>
-    :version_from <project#main> ;
-    :readme_from <project#main> ;
-    :all_from <project#main> ;
-    :test_requires "Test::More 0.88", "Test::Exception";
-    :requires "Moo 1.006000", "URI 1.52", "IRI 0.004", "Types::URI 0.004", "Type::Library 1.000000", "Try::Tiny", "Module::Load::Conditional", "Carp" ;
-    :recommends "RDF::NS 20130802", "RDF::Prefixes", "XML::CommonNS" .
-
-<project#main> <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/URI/NamespaceMap.pm" .
+    :test-requirement       [ :on "Test::More 0.88"^^:CpanId ];
+    :test-requirement       [ :on "Test::Exception"^^:CpanId ];
+    :runtime-requirement    [ :on "perl 5.008001"^^:CpanId ];   # though IRI requires Perl 5.14 anyway
+    :runtime-requirement    [ :on "Moo 1.006000"^^:CpanId ];
+    :runtime-requirement    [ :on "URI 1.52"^^:CpanId ];
+    :runtime-requirement    [ :on "IRI 0.004"^^:CpanId ];
+    :runtime-requirement    [ :on "Types::URI 0.004"^^:CpanId ];
+    :runtime-requirement    [ :on "Type::Library 1.000000"^^:CpanId ];
+    :runtime-requirement    [ :on "Try::Tiny"^^:CpanId ];
+    :runtime-requirement    [ :on "Module::Load::Conditional"^^:CpanId ];
+    :runtime-requirement    [ :on "Carp"^^:CpanId ];
+    :runtime-recommendation [ :on "RDF::NS 20130802"^^:CpanId ];
+    :runtime-recommendation [ :on "RDF::Prefixes"^^:CpanId ];
+    :runtime-recommendation [ :on "XML::CommonNS"^^:CpanId ].
