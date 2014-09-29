@@ -45,7 +45,7 @@ dist:project
 	doap:release      dist:v_0_06;
 	doap:release      dist:v_0_08;
 	doap:release      dist:v_0_10;
-	doap:release      dist:v_0_11_3;
+	doap:release      dist:v_0_12;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/kjetilk/URI-NamespaceMap/>;
@@ -102,13 +102,13 @@ dist:v_0_08
 	dc:issued         "2014-05-19"^^xsd:date;
 	dcs:changeset     [
 		dcs:item [
-			a dcs:Addition;
-			rdfs:label "Prefix guessing using RDF::NS, RDF::Prefixes or XML::CommonNS."@en;
-		];
-		dcs:item [
 			a dcs:Bugfix;
 			rdfs:label "Fix breakage in terms with hyphens."@en;
 			dcs:blame <http://doriantaylor.com/person/dorian-taylor>;
+		];
+		dcs:item [
+			a dcs:Addition;
+			rdfs:label "Prefix guessing using RDF::NS, RDF::Prefixes or XML::CommonNS."@en;
 		];
 	];
 	doap:revision     "0.08"^^xsd:string.
@@ -126,10 +126,10 @@ dist:v_0_10
 	];
 	doap:revision     "0.10"^^xsd:string.
 
-dist:v_0_11_3
+dist:v_0_12
 	a                 doap:Version;
 	rdfs:label        "Support IRI module."@en;
-	dc:issued         "2014-09-27"^^xsd:date;
+	dc:issued         "2014-09-29"^^xsd:date;
 	dcs:changeset     [
 		dcs:item [
 			a dcs:Addition;
@@ -148,8 +148,13 @@ dist:v_0_11_3
 			a dcs:Addition;
 			rdfs:label "Use Types::URI."@en;
 		];
+		dcs:item [
+			a dcs:Addition;
+			rdfs:label "Link Debian packages in metadata."@en;
+		];
 	];
-	doap:revision     "0.11_3"^^xsd:string.
+	doap:revision     "0.12"^^xsd:string;
+	owl:sameAs        <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.12>.
 
 <http://doriantaylor.com/person/dorian-taylor>
 	a                 foaf:Person;
