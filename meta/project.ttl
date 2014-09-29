@@ -6,6 +6,8 @@
 @prefix dcs:  <http://ontologi.es/doap-changeset#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
 
 <>
     dc:title     "DOAP for URI-NamespaceMap"@en ;
@@ -19,6 +21,8 @@ my:project
     :created    "2012-08-27"^^xsd:date ;
     :license        <http://dev.perl.org/licenses/> ;	
     :homepage   <https://metacpan.org/module/URI::NamespaceMap> ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstream> ;
+    rdfs:seeAlso <http://packages.qa.debian.org/libr/liburi-namespacemap-perl.ttl> ;
     :programming-language "Perl" ;
     :maintainer <http://www.kjetil.kjernsmo.net/foaf#me> , 
     		<http://kasei.us/about/foaf.xrdf#greg> ,
@@ -26,7 +30,8 @@ my:project
     :developer  <http://doriantaylor.com/person/dorian-taylor> ;
     :repository [ 
     		  a :GitRepository ; 
-		  :browse <https://github.com/kjetilk/URI-NamespaceMap/>  
+		  :browse <https://github.com/kjetilk/URI-NamespaceMap/> ;
+		  prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fkjetilk%2FURI-NamespaceMap&serialization=PROV-O#> 
 		] ;
     :bug-database <https://github.com/kjetilk/URI-NamespaceMap/issues> .
 

@@ -2,10 +2,12 @@ package URI::Namespace;
 use Moose;
 use Moose::Util::TypeConstraints;
 use URI;
+use IRI 0.003;
+use Types::URI 0.004 -all;
 
 =head1 NAME
 
-URI::Namespace - A namespace URI class with autoload methods
+URI::Namespace - A namespace URI/IRI class with autoload methods
 
 
 =head1 SYNOPSIS
@@ -15,11 +17,9 @@ URI::Namespace - A namespace URI class with autoload methods
   print $foaf->as_string;
   print $foaf->name;
 
-
-
 =head1 DESCRIPTION
 
-This module provides an object with a URI attribute, typically used
+This module provides an object with a URI/IRI attribute, typically used
 prefix-namespace pairs, typically used in XML, RDF serializations,
 etc. The local part can be used as a method, these are autoloaded.
 
@@ -27,13 +27,21 @@ etc. The local part can be used as a method, these are autoloaded.
 
 =over
 
-=item C<< new ( $string | URI ) >>
+=item C<< new ( $string | URI | IRI ) >>
 
 This is the constructor. You may pass a string with a URI or a URI object.
 
-=item C<< uri >>
+=item C<< uri ( [ $local_part ] ) >>
 
-Returns a L<URI> object with the namespace URI.
+Returns a L<URI> object with the namespace IRI. Optionally, the method
+can take a local part as argument, in which case, it will return the
+namespace URI with the local part appended.
+
+=item C<< iri ( [ $local_part ] ) >>
+
+Returns a L<IRI> object with the namespace IRI. Optionally, the method
+can take a local part as argument, in which case, it will return the
+namespace IRI with the local part appended.
 
 =back
 
@@ -59,27 +67,46 @@ around BUILDARGS => sub {
     return { _uri => $parameters[0] };
 };
 
-class_type 'URI';
-coerce 'URI' => from 'Str' => via { URI->new($_) };
-
 has _uri => ( 
-    isa => 'URI',
-	 coerce => 1,
+    isa => Iri,
+    coerce => 1,
     required => 1,
-	 reader => '_uri',
-	 handles => ['as_string', 'as_iri', 'canonical', 'eq', 'abs', 'rel']
+    reader => '_uri',
+    handles => {
+        'as_string' => 'as_string',
+        'as_iri' => 'as_string',
+    }
 );
+
+sub iri {
+    my ($self, $name) = @_;
+    if (defined($name)) {
+        return IRI->new($self->_uri->as_string . "$name");
+    } else {
+        return $self->_uri;
+    }
+}
 
 sub uri {
     my ($self, $name) = @_;
-    return URI->new($self->_uri . "$name");
+    my $iri = $self->_uri->as_string;
+    if (defined($name)) {
+        return URI->new($iri . "$name");
+    } else {
+        return URI->new($iri);
+    }
+}
+
+my $meta = Moose::Util::find_meta(__PACKAGE__);
+for my $method (qw/ abs rel eq canonical /) {
+    $meta->add_method($method, sub { shift->uri->$method(@_) });
 }
 
 our $AUTOLOAD;
 sub AUTOLOAD {
-  my $self = shift;
-  my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-  return $self->uri($name);
+    my $self = shift;
+    my ($name) = $AUTOLOAD =~ /::(\w+)$/;
+    return $self->uri($name);
 }
 
 

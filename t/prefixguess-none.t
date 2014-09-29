@@ -13,7 +13,7 @@ if (defined $xmlns || defined $rdfns || defined $rdfpr) {
 	plan skip_all => 'One of the namespace modules XML::CommonNS, RDF::NS or RDF::Prefixes is installed' 
 }
 
-use_ok(' URI::NamespaceMap');
+use_ok('URI::NamespaceMap');
 
 throws_ok {
   	my $map		= URI::NamespaceMap->new( [ 'foaf', 'rdf' ] );

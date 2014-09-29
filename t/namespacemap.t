@@ -1,4 +1,5 @@
 use Test::More;
+use Test::Exception;
 
 use strict;
 use URI;
@@ -38,6 +39,15 @@ my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 	isa_ok( $map, 'URI::NamespaceMap' );
 }
 
+TODO: {
+	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
+	throws_ok {
+		my $map		= URI::NamespaceMap->new( { isa => 'http://example.org/ns/isa#' } );
+	} qr/prohibited as local part/, "Throws if isa is used as local part.";
+}
+
+
+
 my $map		= URI::NamespaceMap->new( { foaf => $foaf, rdf => $rdf, xsd => 'http://www.w3.org/2001/XMLSchema#' } );
 isa_ok( $map, 'URI::NamespaceMap' );
 
@@ -57,6 +67,16 @@ my $ns		= $map->xsd;
 isa_ok( $ns, 'URI::Namespace' );
 $map->remove_mapping( 'xsd' );
 is( $map->xsd, undef, 'removed namespace' );
+
+isa_ok($ns->uri, 'URI');
+isa_ok($ns->iri, 'IRI');
+
+# ensure that methods delegated to URI are working...
+is($ns->rel('http://www.w3.org/2001/'), 'XMLSchema#', 'namespace delegates rel method');
+is($ns->abs('http://example.org/'), 'http://www.w3.org/2001/XMLSchema#', 'namespace delegates abs method');
+ok($ns->eq(URI->new('http://www.w3.org/2001/XMLSchema#')), 'namespace delegates eq method');
+is($map->foaf->canonical, 'http://xmlns.com/foaf/0.1/', 'namespace delegates canonical method');
+
 
 $map = URI::NamespaceMap->new( { foaf => 'http://xmlns.com/foaf/0.1/', '' => 'http://example.org/' } );
 isa_ok( $map, 'URI::NamespaceMap' );
@@ -91,9 +111,11 @@ is($map->abbreviate($map->uri(':foo')), ':foo', 'abbrev no prefix ');
 is($map->abbreviate('http://derp.net/foobar'), undef, 'abbrev no match');
 
 TODO: {
-  local $TODO = 'Is just foaf as prefix something we should support?';
-	 $uri		= $map->uri('foaf');
-  isa_ok( $uri, 'URI' );
+	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
+	throws_ok {
+		$map->add_mapping( isa => 'http://example.org/ns/isa#' );
+	} qr/prohibited as local part/, "Throws if isa is used as local part.";
 }
+
 
 done_testing;

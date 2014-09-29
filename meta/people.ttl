@@ -1,9 +1,11 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix result: <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2Fkjetilk%2FURI-NamespaceMap&serialization=PROV-O#> .
 
 <http://www.kjetil.kjernsmo.net/foaf#me>
     a           foaf:Person ;
-    owl:sameAs  <http://purl.org/NET/cpan-uri/person/kjetilk> ;
+    owl:sameAs  <http://purl.org/NET/cpan-uri/person/kjetilk> ,
+    		result:user-Kjetil-Kjernsmo ;
     foaf:name   "Kjetil Kjernsmo" ;
     foaf:mbox   <mailto:kjetilk@cpan.org> .
 
@@ -15,11 +17,12 @@
 
 <http://purl.org/NET/cpan-uri/person/perigrin>
     a           foaf:Person ;
+    owl:sameAs  result:user-Chris-Prather ;
     foaf:name   "Chris Prather" ;
     foaf:mbox   <mailto:chris@prather.org> .
 
 <http://doriantaylor.com/person/dorian-taylor>
     a		foaf:Person ;
-    owl:sameAs  <http://purl.org/NET/cpan-uri/person/dorian> ;
+    owl:sameAs  <http://purl.org/NET/cpan-uri/person/dorian>, result:user-Dorian-Taylor ;
     foaf:name 	"Dorian Taylor" ;
     foaf:mbox 	<mailto:dorian@cpan.org> .

@@ -15,4 +15,6 @@ is($foaf->name->as_string, 'http://xmlns.com/foaf/0.1/name', 'expected resource 
 
 is($foaf->uri('Person')->as_string, 'http://xmlns.com/foaf/0.1/Person', 'expected resource object for namespace with Person when set with uri method' );
 
+is($foaf->uri('isa')->as_string, 'http://xmlns.com/foaf/0.1/isa', 'expected resource object for namespace with isa when set with uri method' );
+
 done_testing;
