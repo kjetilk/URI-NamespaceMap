@@ -15,6 +15,7 @@
     :runtime-requirement    [ :on "Try::Tiny"^^:CpanId ];
     :runtime-requirement    [ :on "Module::Load::Conditional"^^:CpanId ];
     :runtime-requirement    [ :on "Carp"^^:CpanId ];
+    :runtime-requirement    [ :on "namespace::autoclean 0.20"^^:CpanId ];
     :runtime-recommendation [ :on "RDF::NS 20130802"^^:CpanId ];
     :runtime-recommendation [ :on "RDF::Prefixes"^^:CpanId ];
     :runtime-recommendation [ :on "XML::CommonNS"^^:CpanId ].
