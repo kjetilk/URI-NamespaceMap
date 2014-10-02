@@ -26,3 +26,9 @@
     owl:sameAs  <http://purl.org/NET/cpan-uri/person/dorian>, result:user-Dorian-Taylor ;
     foaf:name 	"Dorian Taylor" ;
     foaf:mbox 	<mailto:dorian@cpan.org> .
+
+<http://purl.org/NET/cpan-uri/person/tobyink>
+    a foaf:Person;
+    owl:sameAs <http://tobyinkster.co.uk/#i>;
+    foaf:name "Toby Inkster";
+    foaf:mbox <mailto:tobyink@cpan.org>.
