@@ -298,6 +298,7 @@ forbidden. Names of methods of L<Moose::Object> must also be avoided.
 Chris Prather, C<< <chris@prather.org> >>
 Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
 Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
+Toby Inkster, C<< <tobyink@cpan.org> >>
 
 =head1 CONTRIBUTORS
 
