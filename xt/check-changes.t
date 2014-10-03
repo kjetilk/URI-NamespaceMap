@@ -9,6 +9,10 @@ unless ( $ENV{RELEASE_TESTING} ) {
 	plan( skip_all => "Author tests not required for installation" );
 }
 
+unless ( -f "Changes" ) {
+	plan( skip_all => "no changelog" );
+}
+
 eval "use Test::RDF::DOAP::Version";
 SKIP: {
 	skip "Test::RDF::DOAP::Version required", 1 if ($@);

@@ -1,10 +1,17 @@
+use strict;
+use warnings;
+
 package URI::NamespaceMap;
-use Moose;
-use Moose::Util::TypeConstraints;
+use Moo 1.006000;
 use Module::Load::Conditional qw[can_load];
 use URI::Namespace;
 use Carp;
+use Scalar::Util qw( blessed );
+use Sub::Quote qw( quote_sub );
 use Try::Tiny;
+use Types::Standard qw(HashRef);
+use Types::Namespace 0.004 qw(Namespace);
+use namespace::autoclean;
 
 =head1 NAME
 
@@ -83,38 +90,18 @@ around BUILDARGS => sub {
 	return { namespace_map => $parameters[0] };
 };
 
-subtype 'URI::NamespaceMap::Type::NamespaceMap' => as 'HashRef' => where { 
-	my $h = $_;  
-	return 1 unless values %$h; 
-	return if grep { !blessed $_ } values %$h; 
-	return 1
-};
-coerce 'URI::NamespaceMap::Type::NamespaceMap' => from 'HashRef' => via {
-	my $hash = $_;
-	return {
-			  map {
-				  my $k = $_;
-              my $v = $hash->{$_}; 
-              $k => blessed $v ? $v : URI::Namespace->new($v) 
-			  } keys %$hash
-			 };
-};
-
 has namespace_map => (
-							 isa => 'URI::NamespaceMap::Type::NamespaceMap',
-							 traits => ['Hash'],
+							 is => "ro",
+							 isa => HashRef[Namespace],
 							 coerce => 1,
-							 default => sub { {} },
-							 handles => {
-											 add_mapping => 'set',
-											 remove_mapping => 'delete',
-											 namespace_uri => 'get',
-											 list_namespaces => 'values',
-											 list_prefixes => 'keys',
-											}
+							 default => quote_sub q { {} },
 							);
 
-
+sub add_mapping     { $_[0]->namespace_map->{$_[1]} = Namespace->assert_coerce($_[2]) }
+sub remove_mapping  { delete $_[0]->namespace_map->{$_[1]} }
+sub namespace_uri   { $_[0]->namespace_map->{$_[1]} }
+sub list_namespaces { values %{ $_[0]->namespace_map } }
+sub list_prefixes   { keys   %{ $_[0]->namespace_map } }
 
 =item C<< uri ( $prefixed_name ) >>
 
@@ -238,9 +225,6 @@ sub abbreviate {
     return sprintf('%s:%s', $prefix, substr($uri, length $nsuri));
 }
 
-
-no Moose::Util::TypeConstraints;
-
 our $AUTOLOAD;
 sub AUTOLOAD {
 	my ($self, $arg) = @_;
@@ -314,6 +298,7 @@ forbidden. Names of methods of L<Moose::Object> must also be avoided.
 Chris Prather, C<< <chris@prather.org> >>
 Kjetil Kjernsmo, C<< <kjetilk@cpan.org> >>
 Gregory Todd Williams, C<< <gwilliams@cpan.org> >>
+Toby Inkster, C<< <tobyink@cpan.org> >>
 
 =head1 CONTRIBUTORS
 

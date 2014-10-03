@@ -1,9 +1,14 @@
+use strict;
+use warnings;
+
 package URI::Namespace;
-use Moose;
-use Moose::Util::TypeConstraints;
+use Moo 1.006000;
 use URI;
 use IRI 0.003;
-use Types::URI 0.004 -all;
+use Types::Namespace 0.004 qw( Iri );
+use namespace::autoclean;
+
+our $VERSION = '0.12';
 
 =head1 NAME
 
@@ -67,11 +72,11 @@ around BUILDARGS => sub {
     return { _uri => $parameters[0] };
 };
 
-has _uri => ( 
+has _uri => (
+    is => "ro",
     isa => Iri,
     coerce => 1,
     required => 1,
-    reader => '_uri',
     handles => {
         'as_string' => 'as_string',
         'as_iri' => 'as_string',
@@ -97,9 +102,8 @@ sub uri {
     }
 }
 
-my $meta = Moose::Util::find_meta(__PACKAGE__);
 for my $method (qw/ abs rel eq canonical /) {
-    $meta->add_method($method, sub { shift->uri->$method(@_) });
+    eval qq[ sub $method { shift->uri->${method}(\@_) } ];
 }
 
 our $AUTOLOAD;
@@ -108,13 +112,6 @@ sub AUTOLOAD {
     my ($name) = $AUTOLOAD =~ /::(\w+)$/;
     return $self->uri($name);
 }
-
-
-
-no Moose::Util::TypeConstraints;
-no Moose;
-
-__PACKAGE__->meta->make_immutable();
 
 1;
 __END__
