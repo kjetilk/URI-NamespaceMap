@@ -11,7 +11,7 @@
 
 <http://kasei.us/about/foaf.xrdf#greg>
     a           foaf:Person ;
-    owl:sameAs  <http://purl.org/NET/cpan-uri/person/gwilliams> ;
+    owl:sameAs  <http://purl.org/NET/cpan-uri/person/gwilliams>, result:user-Gregory-Todd-Williams ;
     foaf:name   "Gregory Todd Williams" ;
     foaf:mbox   <mailto:gwilliams@cpan.org> .
 
@@ -29,6 +29,6 @@
 
 <http://purl.org/NET/cpan-uri/person/tobyink>
     a foaf:Person;
-    owl:sameAs <http://tobyinkster.co.uk/#i>;
+    owl:sameAs <http://tobyinkster.co.uk/#i>, result:user-Toby-Inkster ;
     foaf:name "Toby Inkster";
     foaf:mbox <mailto:tobyink@cpan.org>.
