@@ -22,7 +22,7 @@ my:v_0_13_1
 	  a dcs:Change ] ,
         [ rdfs:label "Convert packaging to Dist::Inkt."@en ; 
 	  dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
-	  a dcs:Change ] ,
+	  a dcs:Change ]
       ] .
 
 my:v_0_12
