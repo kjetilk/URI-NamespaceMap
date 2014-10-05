@@ -7,14 +7,14 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_13_1 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_20 .
 
-my:v_0_13_1
+my:v_0_20
     a           :Version ;
-    dc:issued   "2014-10-04"^^xsd:date ;
+    dc:issued   "2014-10-05"^^xsd:date ;
     rdfs:label "Moo refactoring."@en ;
-    :revision   "0.13_1"^^xsd:string ;
-#    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.20> ;
+    :revision   "0.20"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.20> ;
     dcs:changeset [
       dcs:item
         [ rdfs:label "Port to Moo."@en ; 
@@ -22,8 +22,9 @@ my:v_0_13_1
 	  a dcs:Change ] ,
         [ rdfs:label "Convert packaging to Dist::Inkt."@en ; 
 	  dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
-	  a dcs:Change ]
-      ] .
+	  a dcs:Change ] ,
+	[ rdfs:label "Warn the user when they have too old RDF::NS but not in automated tests."@en ; a dcs:Addition ]      
+    ] .
 
 my:v_0_12
     a           :Version ;
