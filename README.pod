@@ -1,0 +1,1 @@
+lib/URI/NamespaceMap.pm
