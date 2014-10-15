@@ -7,14 +7,25 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21,
+	   my:v_0_22 .
+
+my:v_0_22
+    a           :Version ;
+    dc:issued   "2014-10-15"^^xsd:date ;
+    rdfs:label "Clean up source tree."@en ;
+    :revision   "0.22"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.22> ;
+    dcs:changeset [
+      dcs:item
+		    [ rdfs:label "Fix missing Changes."@en ; a dcs:Bugfix ] 
+	] .
 
 my:v_0_21
     a           :Version ;
     dc:issued   "2014-10-05"^^xsd:date ;
     rdfs:label "Fix missing Changes."@en ;
     :revision   "0.21"^^xsd:string ;
-    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.21> ;
     dcs:changeset [
       dcs:item
 		    [ rdfs:label "Fix missing Changes."@en ; a dcs:Bugfix ] 
