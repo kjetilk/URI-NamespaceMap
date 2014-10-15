@@ -18,7 +18,7 @@ my:v_0_22
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.22> ;
     dcs:changeset [
       dcs:item
-		    [ rdfs:label "Fix missing Changes."@en ; a dcs:Bugfix ] 
+		    [ rdfs:label "Clean up source tree."@en ; a dcs:Change ] 
 	] .
 
 my:v_0_21
