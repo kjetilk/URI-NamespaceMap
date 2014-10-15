@@ -5,7 +5,8 @@ use Test::Perl::Critic(-exclude => [
 											  'RequireCarping',
 											  'RequireFinalReturn',
 											  'RequireArgUnpacking',
-											  'RequireCheckingReturnValueOfEval' 
+											  'RequireCheckingReturnValueOfEval',
+											  'ProhibitStringyEval'
 											  ],
 							  -severity => 3);
 all_critic_ok();
