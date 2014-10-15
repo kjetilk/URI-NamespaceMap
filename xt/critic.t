@@ -1,8 +1,11 @@
 use Test::Perl::Critic(-exclude => [
 											  'RequireExtendedFormatting',
-											  'ProhibitComplexMappings',
 											  'ProhibitAutoloading',
 											  'ProhibitCascadingIfElse',
-											  'RequireCarping'],
+											  'RequireCarping',
+											  'RequireFinalReturn',
+											  'RequireArgUnpacking',
+											  'RequireCheckingReturnValueOfEval' 
+											  ],
 							  -severity => 3);
 all_critic_ok();

@@ -1,7 +1,6 @@
+package Types::Namespace;
 use strict;
 use warnings;
-
-package Types::Namespace;
 
 use Type::Library -base, -declare => qw( Uri Iri Namespace NamespaceMap );
 use Types::Standard qw( HashRef InstanceOf );

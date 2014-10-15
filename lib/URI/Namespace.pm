@@ -1,7 +1,7 @@
+package URI::Namespace;
 use strict;
 use warnings;
 
-package URI::Namespace;
 use Moo 1.006000;
 use URI;
 use IRI 0.003;

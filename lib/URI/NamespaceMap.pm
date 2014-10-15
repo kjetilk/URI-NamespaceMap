@@ -1,7 +1,6 @@
+package URI::NamespaceMap;
 use strict;
 use warnings;
-
-package URI::NamespaceMap;
 use Moo 1.006000;
 use Module::Load::Conditional qw[can_load];
 use URI::Namespace;
