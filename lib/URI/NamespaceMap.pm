@@ -34,7 +34,7 @@ our $VERSION = '0.22';
   $map->add_mapping(foaf => $foaf);
   $map->add_mapping(rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
   $map->list_prefixes;  #  ( 'foaf', 'rdf', 'xsd' )
-
+  $map->foaf; # Returns URI::Namespace object
 
 =head1 DESCRIPTION
 
@@ -67,6 +67,19 @@ Removes a namespace from the map given a prefix.
 =item C<< namespace_uri ( $name ) >>
 
 Returns the namespace object (if any) associated with the given prefix.
+
+=item C<< $name >>
+
+This module creates a method for all the prefixes, so you can say e.g.
+
+  $map->foaf
+
+and get a L<URI::Namespace> object for the FOAF namespace. Since
+L<URI::Namespace> does the same for local names, you can then say e.g.
+
+  $map->foaf->name
+
+to get a full L<URI>.
 
 =item C<< list_namespaces >>
 
