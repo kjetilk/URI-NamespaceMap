@@ -66,7 +66,7 @@ Removes a namespace from the map given a prefix.
 
 =item C<< namespace_uri ( $name ) >>
 
-Returns the namespace object (if any) associated with the given prefix.
+Returns the L<URI::Namespace> object (if any) associated with the given prefix.
 
 =item C<< $name >>
 
