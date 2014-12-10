@@ -67,50 +67,50 @@ See L<URI::NamespaceMap> for further details about authors, license, etc.
 =cut
 
 around BUILDARGS => sub {
-    my ($next, $self, @parameters) = @_;
-    return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
-    return { _uri => $parameters[0] };
+	my ($next, $self, @parameters) = @_;
+	return $self->$next(@_) if ((@parameters > 1) || (ref($parameters[0]) eq 'HASH'));
+	return { _uri => $parameters[0] };
 };
 
 has _uri => (
-    is => "ro",
-    isa => Iri,
-    coerce => 1,
-    required => 1,
-    handles => {
-        'as_string' => 'as_string',
-        'as_iri' => 'as_string',
-    }
-);
+             is => "ro",
+             isa => Iri,
+             coerce => 1,
+             required => 1,
+             handles => {
+                         'as_string' => 'as_string',
+                         'as_iri' => 'as_string',
+                        }
+            );
 
 sub iri {
-    my ($self, $name) = @_;
-    if (defined($name)) {
-        return IRI->new($self->_uri->as_string . "$name");
-    } else {
-        return $self->_uri;
-    }
+	my ($self, $name) = @_;
+	if (defined($name)) {
+		return IRI->new($self->_uri->as_string . "$name");
+	} else {
+		return $self->_uri;
+	}
 }
 
 sub uri {
-    my ($self, $name) = @_;
-    my $iri = $self->_uri->as_string;
-    if (defined($name)) {
-        return URI->new($iri . "$name");
-    } else {
-        return URI->new($iri);
-    }
+	my ($self, $name) = @_;
+	my $iri = $self->_uri->as_string;
+	if (defined($name)) {
+		return URI->new($iri . "$name");
+	} else {
+		return URI->new($iri);
+	}
 }
 
 for my $method (qw/ abs rel eq canonical /) {
-    eval qq[ sub $method { shift->uri->${method}(\@_) } ];
+	eval qq[ sub $method { shift->uri->${method}(\@_) } ];
 }
 
 our $AUTOLOAD;
 sub AUTOLOAD {
-    my $self = shift;
-    my ($name) = $AUTOLOAD =~ /::(\w+)$/;
-    return $self->uri($name);
+	my $self = shift;
+	my ($name) = $AUTOLOAD =~ /::(\w+)$/;
+	return $self->uri($name);
 }
 
 1;
