@@ -7,8 +7,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21,
-	   my:v_0_22 .
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
+                    my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_22 .
+
+my:v_0_24
+    a           :Version ;
+    dc:issued   "2014-12-10"^^xsd:date ;
+    rdfs:label "Improve documentation."@en ;
+    :revision   "0.24"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.24> ;
+    dcs:changeset [
+      dcs:item
+		    [ rdfs:label "Reindent using Emacs smart-tabs."@en ; a dcs:Change ] 
+		    [ rdfs:label "Improve documentation, autoloader."@en ; a dcs:Change ] 
+		    [ rdfs:label "Some code cleanup."@en ; a dcs:Change ] 
+		    [ rdfs:label "Use a string comparison in failing test."@en ; a dcs:Bugfix ] 
+	] .
 
 my:v_0_22
     a           :Version ;
