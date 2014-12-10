@@ -18,9 +18,9 @@ my:v_0_24
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.24> ;
     dcs:changeset [
       dcs:item
-		    [ rdfs:label "Reindent using Emacs smart-tabs."@en ; a dcs:Change ] 
-		    [ rdfs:label "Improve documentation, autoloader."@en ; a dcs:Change ] 
-		    [ rdfs:label "Some code cleanup."@en ; a dcs:Change ] 
+		    [ rdfs:label "Reindent using Emacs smart-tabs."@en ; a dcs:Change ] ,
+		    [ rdfs:label "Improve documentation, autoloader."@en ; a dcs:Change ] ,
+		    [ rdfs:label "Some code cleanup."@en ; a dcs:Change ] ,
 		    [ rdfs:label "Use a string comparison in failing test."@en ; a dcs:Bugfix ] 
 	] .
 
