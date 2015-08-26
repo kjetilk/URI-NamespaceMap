@@ -62,6 +62,13 @@ SKIP: {
 }
 
 SKIP: {
+	skip "RDF::NS needed", 2 unless(defined $rdfns);
+	my $map		= URI::NamespaceMap->new( [ 'osadm' ] );
+	isa_ok( $map, 'URI::NamespaceMap' );
+	ok($map->namespace_uri('osadm'), 'OSADM returns something');
+}
+
+SKIP: {
 	skip "RDF::Prefixes and RDF::NS or RDF::NS::Curated needed", 5 unless((defined $rdfns || defined $rnscu) && defined $rdfpr);
 	my $map		= URI::NamespaceMap->new( [ 'http://example.org/ns/sdfhkd4f#', 'http://www.w3.org/2004/02/skos/core#' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
