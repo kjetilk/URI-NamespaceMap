@@ -27,7 +27,7 @@ note($diag);
 use_ok('URI::NamespaceMap') ;
 
 SKIP: {
-	skip "XML::CommonNS or RDF::NS needed", 5 unless(defined $xmlns || defined $rdfns);
+	skip "XML::CommonNS, RDF::NS::Curated or RDF::NS needed", 5 unless(defined $xmlns || defined $rdfns || defined $rnscu);
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'rdf' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('foaf'), 'FOAF returns something');
@@ -37,7 +37,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::NS needed", 5 unless (defined $rdfns);
+	skip "RDF::NS or RDF::NS::Curated needed", 5 unless (defined $rdfns || defined $rnscu);
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xsd' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
@@ -47,7 +47,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::NS needed", 5 unless(defined $rdfns);
+	skip "RDF::NS or RDF::NS::Curated needed", 5 unless(defined $rdfns || defined $rnscu);
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'skos' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('foaf'), 'FOAF returns something');
@@ -62,7 +62,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::Prefixes and RDF::NS needed", 5 unless(defined $rdfns && defined $rdfpr);
+	skip "RDF::Prefixes and RDF::NS or RDF::NS::Curated needed", 5 unless((defined $rdfns || defined $rnscu) && defined $rdfpr);
 	my $map		= URI::NamespaceMap->new( [ 'http://example.org/ns/sdfhkd4f#', 'http://www.w3.org/2004/02/skos/core#' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('sdfhkd4f'), 'Keyboard cat returns something');
