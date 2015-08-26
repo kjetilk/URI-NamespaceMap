@@ -249,19 +249,24 @@ sub AUTOLOAD {
 
 sub _guess {
 	my ($self, @data) = @_;
+	my $rnscu = can_load( modules => { 'RDF::NS::Curated' => 0 } );
 	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
 	my $rdfns = can_load( modules => { 'RDF::NS' => 20130802 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
 	
-	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($xmlns || $rdfns || $rdfpr);
+	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
 	my %namespaces;
 	
 	foreach my $entry (@data) {
 		
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
-			warn "Cannot resolve '$entry' without XML::CommonNS or RDF::NS" unless ($xmlns || $rdfns);
-			if ($xmlns) {
+			warn "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
+			if ($rnscu) {
+				my $ns = RDF::NS::Curated->new;
+				$namespaces{$entry} = $ns->uri($entry);
+			}
+			if ((! $namespaces{$entry}) && $xmlns) {
 				require XML::CommonNS;
 				XML::CommonNS->import(':all');
 				try {
@@ -275,9 +280,13 @@ sub _guess {
 			warn "Cannot resolve '$entry'" unless $namespaces{$entry};
 		} else {
 			# Lets assume a URI string
-			warn "Cannot resolve '$entry' without RDF::NS or RDF::Prefixes" unless ($rdfns || $rdfpr);
+			warn "Cannot resolve '$entry' without RDF::NS::Curated, RDF::NS or RDF::Prefixes" unless ($rnscu || $rdfns || $rdfpr);
 			my $prefix;
-			if ($rdfns) {
+			if ($rnscu) {
+				my $ns = RDF::NS::Curated->new;
+				$prefix = $ns->prefix($entry);
+			}
+			if ((! $prefix) && ($rdfns)) {
 				my $ns = RDF::NS->new;
 				$prefix = $ns->PREFIX($entry);
 			}

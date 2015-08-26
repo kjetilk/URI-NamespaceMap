@@ -6,14 +6,17 @@ use Module::Load::Conditional qw[check_install];
 
 my $xmlns = check_install( module => 'XML::CommonNS');
 my $rdfns = check_install( module => 'RDF::NS', version => 20130802);
+my $rnscu = check_install( module => 'RDF::NS::Curated');
 my $rdfpr = check_install( module => 'RDF::Prefixes');
 
-unless (defined $xmlns || defined $rdfns || defined $rdfpr) {
-	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS or RDF::Prefixes are installed' 
+unless (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
+	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS::Curated, RDF::NS or RDF::Prefixes are installed' 
 }
 
 my $diag = "Status for optional modules: ";
-$diag .= (defined $xmlns) ? " With " : " Without ";
+$diag .= (defined $rnscu) ? " With " : " Without ";
+$diag .= "RDF::NS::Curated,";
+$diag .= (defined $xmlns) ? " with " : " without ";
 $diag .= "XML::CommonNS,";
 $diag .= (defined $rdfns) ? " with " : " without ";
 $diag .= "RDF::NS,";
