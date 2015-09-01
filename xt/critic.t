@@ -1,4 +1,5 @@
 use Test::Perl::Critic(-exclude => [
+											  'ProhibitExcessComplexity',
 											  'RequireExtendedFormatting',
 											  'ProhibitAutoloading',
 											  'ProhibitCascadingIfElse',
