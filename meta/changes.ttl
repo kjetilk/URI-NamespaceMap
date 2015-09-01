@@ -18,7 +18,7 @@ my:v_0_26
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.26> ;
     dcs:changeset [
       dcs:item
-		    [ rdfs:label "Support for RDF::NS::Curated."@en ; a dcs:Change ] ,
+		    [ rdfs:label "Support for RDF::NS::Curated."@en ; a dcs:Change ] 
 	] .
 
 my:v_0_24
