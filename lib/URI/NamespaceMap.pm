@@ -254,7 +254,7 @@ sub _guess {
 	my $rdfns = can_load( modules => { 'RDF::NS' => 20130802 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
 	
-	confess 'To resolve an array, you need either XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
+	confess 'To resolve an array, you need at least one of RDF::NS::Curated, XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
 	my %namespaces;
 	
 	foreach my $entry (@data) {
