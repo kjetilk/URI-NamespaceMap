@@ -8,14 +8,14 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
-                    my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  my:v_0_27_1 .
+                    my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  my:v_0_28 .
 
-my:v_0_27_1
+my:v_0_28
     a           :Version ;
-    dc:issued   "2015-09-22"^^xsd:date ;
+    dc:issued   "2015-09-23"^^xsd:date ;
     rdfs:label "Bugfix release."@en ;
-    :revision   "0.27_01"^^xsd:string ;
-#    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.26> ;
+    :revision   "0.28"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.28> ;
     dcs:changeset [
       dcs:item
 		    [ rdfs:label "Had forgotten to update error messages."@en ; a dcs:Bugfix ] 
