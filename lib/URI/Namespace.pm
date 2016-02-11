@@ -8,7 +8,7 @@ use IRI 0.003;
 use Types::Namespace 0.004 qw( Iri );
 use namespace::autoclean;
 
-our $VERSION = '0.28';
+our $VERSION = '0.30';
 
 =head1 NAME
 
