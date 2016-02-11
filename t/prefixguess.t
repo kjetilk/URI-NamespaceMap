@@ -52,13 +52,6 @@ SKIP: {
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('foaf'), 'FOAF returns something');
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
-   SKIP: {
-	     skip "RDF::NS 20130802 or later is needed", 2 if ($ENV{'AUTOMATED_TESTING'} &&
-	                                                       defined($RDF::NS::VERSION) &&
-	                                                       $RDF::NS::VERSION lt '20130802');
-	     ok($map->namespace_uri('skos'), 'SKOS returns something (you may need to upgrade RDF::NS if this fails)');
-	     is($map->namespace_uri('skos')->as_string, 'http://www.w3.org/2004/02/skos/core#', 'SKOS URI string OK');
-     }
 }
 
 SKIP: {
