@@ -11,7 +11,7 @@ my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_
                     my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  
                     my:v_0_28, my:v_0_30, my:v_0_31_01 .
 
-my:v_0_30_01
+my:v_0_31_01
     a           :Version ;
     dc:issued   "2016-02-16"^^xsd:date ;
     rdfs:label "Test bugfix."@en ;
