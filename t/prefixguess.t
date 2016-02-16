@@ -58,9 +58,10 @@ SKIP: {
 
 SKIP: {
 	skip "RDF::NS needed", 2 unless(defined $rdfns);
-	my $map		= URI::NamespaceMap->new( [ 'osadm' ] );
+	my $map		= URI::NamespaceMap->new( [ 'bibo' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
-	ok($map->namespace_uri('osadm'), 'OSADM returns something');
+	ok($map->namespace_uri('bibo'), 'DCT returns something');
+	is($map->namespace_uri('bibo')->as_string, 'http://purl.org/ontology/bibo/', 'BIBO URI string OK');
 }
 
 SKIP: {
