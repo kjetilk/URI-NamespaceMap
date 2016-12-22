@@ -13,6 +13,14 @@ unless (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
 	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS::Curated, RDF::NS or RDF::Prefixes are installed' 
 }
 
+if (defined $rdfns) {
+	use RDF::NS;
+	unless (defined($RDF::NS::VERSION)) {
+		diag('RDF::NS appears to be installed, but no version was found. Not using');
+		$rdfns = undef;
+	}
+}
+
 my $diag = "Status for optional modules: ";
 $diag .= (defined $rnscu) ? " With " : " Without ";
 $diag .= "RDF::NS::Curated,";
