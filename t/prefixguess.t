@@ -14,9 +14,13 @@ unless (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
 }
 
 if (defined $rdfns) {
-	use RDF::NS;
+	require RDF::NS;
 	unless (defined($RDF::NS::VERSION)) {
 		diag('RDF::NS appears to be installed, but no version was found. Not using');
+		$rdfns = undef;
+	}
+	elsif ($RDF::NS::VERSION < 20130802) {
+		diag('RDF::NS is old, please upgrade. Not using for tests');
 		$rdfns = undef;
 	}
 }
