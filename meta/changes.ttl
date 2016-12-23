@@ -9,13 +9,13 @@
 
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
                     my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  
-                    my:v_0_28, my:v_0_30, my:v_0_31_02, my:v_0_31_03 .
+                    my:v_0_28, my:v_0_30, my:v_0_31_02, my:v_0_31_04 .
 
-my:v_0_31_03
+my:v_0_31_04
     a           :Version ;
-    dc:issued   "2016-12-22"^^xsd:date ;
+    dc:issued   "2016-12-23"^^xsd:date ;
     rdfs:label "Test bugfix again."@en ;
-    :revision   "0.31_03"^^xsd:string ;
+    :revision   "0.31_04"^^xsd:string ;
     dcs:changeset [
       dcs:item
 		    [ rdfs:label "Try skipping if no version is found."@en ; a dcs:Bugfix ] 
