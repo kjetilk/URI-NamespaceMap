@@ -46,6 +46,9 @@ SKIP: {
 	ok($map->namespace_uri('rdf'), 'RDF returns something');
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
 	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
+	$map->guess_and_add('dct');
+	ok($map->namespace_uri('dct'), 'DCT returns something');
+	is($map->namespace_uri('dct')->as_string, 'http://purl.org/dc/terms/', 'DCT URI string OK');
 }
 
 SKIP: {
@@ -93,6 +96,10 @@ SKIP: {
 	ok($map->namespace_uri('doap'), 'DOAP returns something');
 	is($map->namespace_uri('rdfs')->as_string, 'http://www.w3.org/2000/01/rdf-schema#', 'RDFS URI string OK');
 	is($map->namespace_uri('doap')->as_string, 'http://usefulinc.com/ns/doap#', 'DOAP URI string OK');
+	$map->guess_and_add('http://www.w3.org/2001/XMLSchema#');
+	ok($map->namespace_uri('xsd'), 'xsd returns something');
+	is($map->namespace_uri('xsd')->as_string, 'http://www.w3.org/2001/XMLSchema#', 'xsd URI string OK');
+
 }
 
 
