@@ -115,6 +115,25 @@ sub namespace_uri   { $_[0]->namespace_map->{$_[1]} }
 sub list_namespaces { values %{ $_[0]->namespace_map } }
 sub list_prefixes   { keys   %{ $_[0]->namespace_map } }
 
+
+=item C<< guess_and_add ( @string_or_uri ) >>
+
+Like in the constructor, an array of strings can be given, and the
+module will attempt to guess appropriate mappings, and add them to the
+map.
+
+=cut
+
+sub guess_and_add {
+	my ($self, @data) = @_;
+	my $guessed = $self->_guess(@data);
+	while (my ($name, $uri) = each %{$guessed}) {
+		$self->add_mapping($name => $uri);
+	}
+}
+
+
+
 =item C<< uri ( $prefixed_name ) >>
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
