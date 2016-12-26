@@ -39,7 +39,7 @@ note($diag);
 use_ok('URI::NamespaceMap') ;
 
 SKIP: {
-	skip "XML::CommonNS, RDF::NS::Curated or RDF::NS needed", 5 unless(defined $xmlns || defined $rdfns || defined $rnscu);
+	skip "XML::CommonNS, RDF::NS::Curated or RDF::NS needed", 7 unless(defined $xmlns || defined $rdfns || defined $rnscu);
 	my $map		= URI::NamespaceMap->new( [ 'foaf', 'rdf' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('foaf'), 'FOAF returns something');
@@ -89,7 +89,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::Prefixes", 5 unless(defined $rdfpr);
+	skip "RDF::Prefixes", 7 unless(defined $rdfpr);
 	my $map		= URI::NamespaceMap->new( [ 'http://www.w3.org/2000/01/rdf-schema#', 'http://usefulinc.com/ns/doap#' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('rdfs'), 'RDFS returns something');
