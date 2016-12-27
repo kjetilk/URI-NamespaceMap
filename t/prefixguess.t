@@ -20,8 +20,7 @@ if (defined $rdfns) {
 		$rdfns = undef;
 	}
 	elsif ($RDF::NS::VERSION < 20130802) {
-		diag('RDF::NS is old, please upgrade. Not using for tests');
-		$rdfns = undef;
+		plan skip_all => 'RDF::NS is old, please upgrade. Skipping tests, other functionality is usually OK.');
 	}
 }
 
