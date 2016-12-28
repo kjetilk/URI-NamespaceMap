@@ -45,9 +45,9 @@ SKIP: {
 	ok($map->namespace_uri('rdf'), 'RDF returns something');
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
 	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
-	$map->guess_and_add('dct');
-	ok($map->namespace_uri('dct'), 'DCT returns something');
-	is($map->namespace_uri('dct')->as_string, 'http://purl.org/dc/terms/', 'DCT URI string OK');
+	$map->guess_and_add('dc');
+	ok($map->namespace_uri('dc'), 'DC returns something');
+	is($map->namespace_uri('dc')->as_string, 'http://purl.org/dc/terms/', 'DC URI string OK');
 }
 
 SKIP: {
