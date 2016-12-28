@@ -9,13 +9,13 @@
 
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
                     my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  
-                    my:v_0_28, my:v_0_30, my:v_0_31_02, my:v_0_31_04, my:v_0_31_07 .
+                    my:v_0_28, my:v_0_30, my:v_0_31_02, my:v_0_31_04, my:v_0_31_08 .
 
-my:v_0_31_07
+my:v_0_31_08
     a           :Version ;
-    dc:issued   "2016-12-26"^^xsd:date ;
+    dc:issued   "2016-12-28"^^xsd:date ;
     rdfs:label "Add guess method."@en ;
-    :revision   "0.31_07"^^xsd:string ;
+    :revision   "0.31_08"^^xsd:string ;
     dcs:changeset [
       dcs:item
 		    [ rdfs:label "Add guess method."@en ; a dcs:Bugfix ] 
