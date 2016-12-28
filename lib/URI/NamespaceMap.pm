@@ -280,7 +280,7 @@ sub _guess {
 		
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
-			warn "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
+			carp "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
 			if ($rnscu) {
 				my $ns = RDF::NS::Curated->new;
 				$namespaces{$entry} = $ns->uri($entry);
@@ -296,10 +296,10 @@ sub _guess {
 				my $ns = RDF::NS->new;
 				$namespaces{$entry} = $ns->SELECT($entry);
 			}
-			warn "Cannot resolve '$entry'" unless $namespaces{$entry};
+			carp "Cannot resolve '$entry'" unless $namespaces{$entry};
 		} else {
 			# Lets assume a URI string
-			warn "Cannot resolve '$entry' without RDF::NS::Curated, RDF::NS or RDF::Prefixes" unless ($rnscu || $rdfns || $rdfpr);
+			carp "Cannot resolve '$entry' without RDF::NS::Curated, RDF::NS or RDF::Prefixes" unless ($rnscu || $rdfns || $rdfpr);
 			my $prefix;
 			if ($rnscu) {
 				my $ns = RDF::NS::Curated->new;
@@ -314,7 +314,7 @@ sub _guess {
 				$prefix = $context->get_prefix($entry);
 			}
 			unless ($prefix) {
-				warn "Cannot resolve '$entry'";
+				carp "Cannot resolve '$entry'";
 			} else {
 				$namespaces{$prefix} = $entry;
 			}
