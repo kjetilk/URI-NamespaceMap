@@ -9,36 +9,21 @@
 
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
                     my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  
-                    my:v_0_28, my:v_0_30, my:v_0_31_02, my:v_0_31_04, my:v_0_31_09 .
+                    my:v_0_28, my:v_0_30, my:v_0_32 .
+    
 
-my:v_0_31_09
+
+my:v_0_32
     a           :Version ;
-    dc:issued   "2016-12-28"^^xsd:date ;
-    rdfs:label "Add guess method."@en ;
-    :revision   "0.31_09"^^xsd:string ;
+    dc:issued   "2016-12-29"^^xsd:date ;
+    rdfs:label "New guessing method and improved diagnostics."@en ;
+    :revision   "0.32"^^xsd:string ;
     dcs:changeset [
       dcs:item
-		    [ rdfs:label "Add guess method."@en ; a dcs:Bugfix ] 
-	] .
+	       [ rdfs:label "Rework some tests that fails in strange ways."@en ; a dcs:Bugfix ],
+               [ rdfs:label "Add method for adding guesses post-construction."@en ; a dcs:Addition ] ,
+	       [ rdfs:label "Use carp instead of warns."@en ; a dcs:Change ],
 
-my:v_0_31_04
-    a           :Version ;
-    dc:issued   "2016-12-23"^^xsd:date ;
-    rdfs:label "Test bugfix again."@en ;
-    :revision   "0.31_04"^^xsd:string ;
-    dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Try skipping if no version is found."@en ; a dcs:Bugfix ] 
-	] .
-
-my:v_0_31_02
-    a           :Version ;
-    dc:issued   "2016-02-17"^^xsd:date ;
-    rdfs:label "Test bugfix."@en ;
-    :revision   "0.31_02"^^xsd:string ;
-    dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Rework some tests that fails in strange ways."@en ; a dcs:Bugfix ] 
 	] .
 
 my:v_0_30
