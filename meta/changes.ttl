@@ -22,7 +22,7 @@ my:v_0_32
       dcs:item
 	       [ rdfs:label "Rework some tests that fails in strange ways."@en ; a dcs:Bugfix ],
                [ rdfs:label "Add method for adding guesses post-construction."@en ; a dcs:Addition ] ,
-	       [ rdfs:label "Use carp instead of warns."@en ; a dcs:Change ],
+	       [ rdfs:label "Use carp instead of warns."@en ; a dcs:Change ]
 
 	] .
 
