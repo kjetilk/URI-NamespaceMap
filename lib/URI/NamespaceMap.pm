@@ -8,6 +8,7 @@ use Sub::Quote qw( quote_sub );
 use Try::Tiny;
 use Types::Standard qw(HashRef);
 use Types::Namespace 0.004 qw(Namespace);
+use URI::NamespaceMap::ReservedLocalParts;
 use namespace::autoclean;
 
 =head1 NAME
@@ -100,6 +101,15 @@ around BUILDARGS => sub {
 	return { namespace_map => $parameters[0] };
 };
 
+sub BUILD {
+    my ($self, $args) = @_;
+    my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
+    for my $local_part (keys %{$args->{namespace_map}}) {
+        Carp::croak("$_[1] prohibited as local part")
+            if $r->is_reserved($local_part);
+    }
+}
+
 has namespace_map => (
                       is => "ro",
                       isa => HashRef[Namespace],
@@ -107,7 +117,12 @@ has namespace_map => (
                       default => quote_sub q { {} },
                      );
 
-sub add_mapping     { $_[0]->namespace_map->{$_[1]} = Namespace->assert_coerce($_[2]) }
+sub add_mapping {
+	my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
+	Carp::croak("$_[1] prohibited as local part") if $r->is_reserved($_[1]);
+
+	$_[0]->namespace_map->{$_[1]} = Namespace->assert_coerce($_[2])
+}
 sub remove_mapping  { delete $_[0]->namespace_map->{$_[1]} }
 sub namespace_uri   { $_[0]->namespace_map->{$_[1]} }
 sub list_namespaces { values %{ $_[0]->namespace_map } }
@@ -275,7 +290,6 @@ sub _guess {
 	my %namespaces;
 	
 	foreach my $entry (@data) {
-		
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
@@ -365,4 +379,3 @@ under the same terms as Perl itself.
 
 1;
 __END__
-
