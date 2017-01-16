@@ -350,6 +350,7 @@ Toby Inkster, C<< <tobyink@cpan.org> >>
 =head1 CONTRIBUTORS
 
 Dorian Taylor
+Paul Williams
 
 =head1 BUGS
 

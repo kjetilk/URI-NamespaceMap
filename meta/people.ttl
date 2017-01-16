@@ -32,3 +32,8 @@
     owl:sameAs <http://tobyinkster.co.uk/#i>, result:user-Toby-Inkster ;
     foaf:name "Toby Inkster";
     foaf:mbox <mailto:tobyink@cpan.org>.
+
+<http://purl.org/NET/cpan-uri/person/kwakwa>
+    a           foaf:Person ;
+    owl:sameAs  result:user-Paul-Williams ;
+    foaf:name   "Paul Williams" .
