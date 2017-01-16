@@ -17,13 +17,13 @@ Types::Namespace - type constraints for dealing with namespaces
   package Namespace::Counter {
     use Moo;  # or Moose
     use Types::Namespace qw( Namespace );
-    
+
     has ns => (
       is => "ro",
       isa => Namespace,
       required => 1,
     );
-    
+
     sub count_uses_in_document { ... }
   }
 

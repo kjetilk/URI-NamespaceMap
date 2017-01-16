@@ -39,12 +39,9 @@ my $rdf	= URI::Namespace->new( 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
 	isa_ok( $map, 'URI::NamespaceMap' );
 }
 
-TODO: {
-	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
-	throws_ok {
-		my $map		= URI::NamespaceMap->new( { isa => 'http://example.org/ns/isa#' } );
-	} qr/prohibited as local part/, "Throws if isa is used as local part.";
-}
+throws_ok {
+	my $map		= URI::NamespaceMap->new( { isa => 'http://example.org/ns/isa#' } );
+} qr/prohibited as local part/, "Throws if isa is used as local part.";
 
 
 
@@ -110,12 +107,8 @@ is($map->abbreviate($map->uri(':foo')), ':foo', 'abbrev no prefix ');
 
 is($map->abbreviate('http://derp.net/foobar'), undef, 'abbrev no match');
 
-TODO: {
-	local $TODO = 'Need to throw a sensible error message if a method is used as local part';
-	throws_ok {
-		$map->add_mapping( isa => 'http://example.org/ns/isa#' );
-	} qr/prohibited as local part/, "Throws if isa is used as local part.";
-}
-
+throws_ok {
+	$map->add_mapping( isa => 'http://example.org/ns/isa#' );
+} qr/prohibited as local part/, "Throws if isa is used as local part.";
 
 done_testing;

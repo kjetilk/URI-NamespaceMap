@@ -1,7 +1,6 @@
 use Test::More;
 use Test::Exception;
 
-
 use strict;
 use Module::Load::Conditional qw[check_install];
 
@@ -11,7 +10,7 @@ my $rnscu = check_install( module => 'RDF::NS::Curated');
 my $rdfpr = check_install( module => 'RDF::Prefixes');
 
 if (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
-	plan skip_all => 'One of the namespace modules is installed' 
+	plan skip_all => 'One of the namespace modules is installed'
 }
 
 use_ok('URI::NamespaceMap');

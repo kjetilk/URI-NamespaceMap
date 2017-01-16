@@ -8,6 +8,7 @@ use Sub::Quote qw( quote_sub );
 use Try::Tiny;
 use Types::Standard qw(HashRef);
 use Types::Namespace 0.004 qw(Namespace);
+use URI::NamespaceMap::ReservedLocalParts;
 use namespace::autoclean;
 
 =head1 NAME
@@ -89,7 +90,6 @@ Returns an array of prefixes.
 
 =cut
 
-
 around BUILDARGS => sub {
 	my ($next, $self, @parameters) = @_;
 	if (ref($parameters[0]) eq 'ARRAY') {
@@ -100,6 +100,15 @@ around BUILDARGS => sub {
 	} else { $self->$next(@parameters) }
 };
 
+sub BUILD {
+    my ($self, $args) = @_;
+    my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
+    for my $local_part (keys %{$args->{namespace_map}}) {
+        Carp::croak("$_[1] prohibited as local part")
+            if $r->is_reserved($local_part);
+    }
+}
+
 has namespace_map => (
                       is => "ro",
                       isa => HashRef[Namespace],
@@ -107,7 +116,12 @@ has namespace_map => (
                       default => quote_sub q { {} },
                      );
 
-sub add_mapping     { $_[0]->namespace_map->{$_[1]} = Namespace->assert_coerce($_[2]) }
+sub add_mapping {
+	my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
+	Carp::croak("$_[1] prohibited as local part") if $r->is_reserved($_[1]);
+
+	$_[0]->namespace_map->{$_[1]} = Namespace->assert_coerce($_[2])
+}
 sub remove_mapping  { delete $_[0]->namespace_map->{$_[1]} }
 sub namespace_uri   { $_[0]->namespace_map->{$_[1]} }
 sub list_namespaces { values %{ $_[0]->namespace_map } }
@@ -129,8 +143,6 @@ sub guess_and_add {
 		$self->add_mapping($name => $uri);
 	}
 }
-
-
 
 =item C<< uri ( $prefixed_name ) >>
 
@@ -164,7 +176,6 @@ called in list context) for the given URI.
 
 =cut
 
-
 # turn the URI back into a string to mitigate unexpected behaviour
 sub _scrub_uri {
 	my $uri = shift;
@@ -195,36 +206,36 @@ sub _scrub_uri {
 			            "an unblessed %s reference", ref $uri);
 		}
 	}
-	
+
 	return $uri;
 }
 
 sub prefix_for {
 	my ($self, $uri) = @_;
-	
+
 	$uri = _scrub_uri($uri);
-	
+
 	my @candidates;
 	for my $k ($self->list_prefixes) {
 		my $v = $self->namespace_uri($k);
-		
+
 		my $nsuri = $v->as_string;
-		
+
 		# the input should always be longer than the namespace
 		next if length $nsuri > length $uri;
-		
+
 		# candidate namespace must match exactly
 		my $cns = substr($uri, 0, length $nsuri);
 		push @candidates, $k if $cns eq $nsuri;
 	}
-	
+
 	# make sure this behaves correctly when empty
 	return unless @candidates;
-	
+
 	# if this returns more than one prefix, take the
 	# shortest/lexically lowest one.
 	@candidates = sort @candidates;
-	
+
 	return wantarray ? @candidates : $candidates[0];
 }
 
@@ -241,16 +252,16 @@ may be useful for certain serialization tasks.
 
 sub abbreviate {
 	my ($self, $uri) = @_;
-	
+
 	$uri = _scrub_uri($uri);
-	
+
 	my $prefix = $self->prefix_for($uri);
-	
+
 	# XXX is this actually the most desirable behaviour?
 	return unless defined $prefix;
-	
+
 	my $nsuri = _scrub_uri($self->namespace_uri($prefix));
-	
+
 	return sprintf('%s:%s', $prefix, substr($uri, length $nsuri));
 }
 
@@ -270,12 +281,11 @@ sub _guess {
 	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
 	my $rdfns = can_load( modules => { 'RDF::NS' => 20130802 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
-	
+
 	confess 'To resolve an array, you need at least one of RDF::NS::Curated, XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
 	my %namespaces;
-	
+
 	foreach my $entry (@data) {
-		
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
@@ -321,7 +331,6 @@ sub _guess {
 	return \%namespaces;
 }
 
-
 =back
 
 =head1 WARNING
@@ -365,4 +374,3 @@ under the same terms as Perl itself.
 
 1;
 __END__
-
