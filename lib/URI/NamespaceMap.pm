@@ -284,27 +284,35 @@ sub _guess {
 
 	confess 'To resolve an array, you need at least one of RDF::NS::Curated, XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
 	my %namespaces;
+	my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
 
 	foreach my $entry (@data) {
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
 			carp "Cannot resolve '$entry' without RDF::NS::Curated, XML::CommonNS, RDF::NS" unless ($rnscu || $xmlns || $rdfns);
+			my $i = 1;
+			my $prefix = $entry;
+			while ($r->is_reserved($prefix)) {
+				$prefix .= 'x';
+				carp "Cannot resolve '$entry' as tried prefix '$prefix' conflicts with method names." if ($i > 5);
+			}
+
 			if ($rnscu) {
 				my $ns = RDF::NS::Curated->new;
-				$namespaces{$entry} = $ns->uri($entry);
+				$namespaces{$prefix} = $ns->uri($entry);
 			}
-			if ((! $namespaces{$entry}) && $xmlns) {
+			if ((! $namespaces{$prefix}) && $xmlns) {
 				require XML::CommonNS;
 				XML::CommonNS->import(':all');
 				try {
-					$namespaces{$entry} = XML::CommonNS->uri(uc($entry))->toString;
+					$namespaces{$prefix} = XML::CommonNS->uri(uc($entry))->toString;
 				}; # Then, XML::CommonNS doesn't have the prefix, which is OK, we just continue
 			}
-			if ((! $namespaces{$entry}) && $rdfns) {
+			if ((! $namespaces{$prefix}) && $rdfns) {
 				my $ns = RDF::NS->new;
-				$namespaces{$entry} = $ns->SELECT($entry);
+				$namespaces{$prefix} = $ns->SELECT($entry);
 			}
-			carp "Cannot resolve '$entry'" unless $namespaces{$entry};
+			carp "Cannot resolve '$entry'" unless $namespaces{$prefix};
 		} else {
 			# Lets assume a URI string
 			carp "Cannot resolve '$entry' without RDF::NS::Curated, RDF::NS or RDF::Prefixes" unless ($rnscu || $rdfns || $rdfpr);
@@ -324,6 +332,11 @@ sub _guess {
 			unless ($prefix) {
 				carp "Cannot resolve '$entry'";
 			} else {
+				my $i = 1;
+				while ($r->is_reserved($prefix)) {
+					$prefix .= 'x';
+					carp "Cannot resolve '$entry' as tried prefix '$prefix' conflicts with method names." if ($i > 5);
+				}
 				$namespaces{$prefix} = $entry;
 			}
 		}
