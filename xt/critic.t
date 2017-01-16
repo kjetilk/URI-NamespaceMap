@@ -3,7 +3,6 @@ use Test::Perl::Critic(-exclude => [
 											  'RequireExtendedFormatting',
 											  'ProhibitAutoloading',
 											  'ProhibitCascadingIfElse',
-											  'RequireCarping',
 											  'RequireFinalReturn',
 											  'RequireArgUnpacking',
 											  'RequireCheckingReturnValueOfEval',
