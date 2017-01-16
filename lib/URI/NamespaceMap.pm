@@ -340,6 +340,8 @@ prefix, because these names are defined as method for every Perl
 object by default. The method names 'new' and 'uri' are also
 forbidden. Names of methods of L<Moose::Object> must also be avoided.
 
+Using them will result in an error.
+
 =head1 AUTHORS
 
 Chris Prather, C<< <chris@prather.org> >>
