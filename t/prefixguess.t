@@ -101,7 +101,9 @@ SKIP: {
 	$map->guess_and_add('http://www.w3.org/2002/07/owl#');
 	ok($map->namespace_uri('owl'), 'owl returns something');
 	is($map->namespace_uri('owl')->as_string, 'http://www.w3.org/2002/07/owl#', 'owl URI string OK');
-
+	$map->guess_and_add('http://example.org/isa#');
+	ok($map->namespace_uri('isax'), 'isax returns something');
+	is($map->namespace_uri('isax')->as_string, 'http://example.org/isa#', 'isax URI string OK');
 }
 
 
