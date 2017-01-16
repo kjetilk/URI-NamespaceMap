@@ -90,7 +90,6 @@ Returns an array of prefixes.
 
 =cut
 
-
 around BUILDARGS => sub {
 	my ($next, $self, @parameters) = @_;
 	if (ref($parameters[0]) eq 'ARRAY') {
@@ -145,8 +144,6 @@ sub guess_and_add {
 	}
 }
 
-
-
 =item C<< uri ( $prefixed_name ) >>
 
 Returns a URI for an abbreviated string such as 'foaf:Person'.
@@ -179,7 +176,6 @@ called in list context) for the given URI.
 
 =cut
 
-
 # turn the URI back into a string to mitigate unexpected behaviour
 sub _scrub_uri {
 	my $uri = shift;
@@ -210,36 +206,36 @@ sub _scrub_uri {
 			            "an unblessed %s reference", ref $uri);
 		}
 	}
-	
+
 	return $uri;
 }
 
 sub prefix_for {
 	my ($self, $uri) = @_;
-	
+
 	$uri = _scrub_uri($uri);
-	
+
 	my @candidates;
 	for my $k ($self->list_prefixes) {
 		my $v = $self->namespace_uri($k);
-		
+
 		my $nsuri = $v->as_string;
-		
+
 		# the input should always be longer than the namespace
 		next if length $nsuri > length $uri;
-		
+
 		# candidate namespace must match exactly
 		my $cns = substr($uri, 0, length $nsuri);
 		push @candidates, $k if $cns eq $nsuri;
 	}
-	
+
 	# make sure this behaves correctly when empty
 	return unless @candidates;
-	
+
 	# if this returns more than one prefix, take the
 	# shortest/lexically lowest one.
 	@candidates = sort @candidates;
-	
+
 	return wantarray ? @candidates : $candidates[0];
 }
 
@@ -256,16 +252,16 @@ may be useful for certain serialization tasks.
 
 sub abbreviate {
 	my ($self, $uri) = @_;
-	
+
 	$uri = _scrub_uri($uri);
-	
+
 	my $prefix = $self->prefix_for($uri);
-	
+
 	# XXX is this actually the most desirable behaviour?
 	return unless defined $prefix;
-	
+
 	my $nsuri = _scrub_uri($self->namespace_uri($prefix));
-	
+
 	return sprintf('%s:%s', $prefix, substr($uri, length $nsuri));
 }
 
@@ -285,10 +281,10 @@ sub _guess {
 	my $xmlns = can_load( modules => { 'XML::CommonNS' => 0 } );
 	my $rdfns = can_load( modules => { 'RDF::NS' => 20130802 } );
 	my $rdfpr = can_load( modules => { 'RDF::Prefixes' => 0 } );
-	
+
 	confess 'To resolve an array, you need at least one of RDF::NS::Curated, XML::CommonNS, RDF::NS or RDF::Prefixes' unless ($rnscu || $xmlns || $rdfns || $rdfpr);
 	my %namespaces;
-	
+
 	foreach my $entry (@data) {
 		if ($entry =~ m/^[a-z]\w+$/i) {
 			# This is a prefix
@@ -334,7 +330,6 @@ sub _guess {
 	}
 	return \%namespaces;
 }
-
 
 =back
 

@@ -3,7 +3,6 @@ use Test::More;
 use strict;
 use URI;
 
-
 use_ok('URI::Namespace');
 
 my $foaf = URI::Namespace->new( 'http://xmlns.com/foaf/0.1/' );

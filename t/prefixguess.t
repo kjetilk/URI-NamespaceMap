@@ -10,7 +10,7 @@ my $rnscu = check_install( module => 'RDF::NS::Curated');
 my $rdfpr = check_install( module => 'RDF::Prefixes');
 
 unless (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
-	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS::Curated, RDF::NS or RDF::Prefixes are installed' 
+	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS::Curated, RDF::NS or RDF::Prefixes are installed'
 }
 
 if (defined $rdfns) {
@@ -60,7 +60,7 @@ SKIP: {
 	is($map->namespace_uri('foaf')->as_string, 'http://xmlns.com/foaf/0.1/', 'FOAF URI string OK');
 	is($map->namespace_uri('rdf')->as_string, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'RDF URI string OK');
 	is_deeply([sort $map->list_prefixes], ['foaf', 'rdf', 'xsd' ], 'Prefix listing OK');
-	
+
 }
 
 SKIP: {

@@ -11,7 +11,6 @@ our $VERSION = '0.32';
 
 URI::Namespace - A namespace URI/IRI class with autoload methods
 
-
 =head1 SYNOPSIS
 
   use URI::Namespace;
