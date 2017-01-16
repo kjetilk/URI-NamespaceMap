@@ -5,7 +5,7 @@ use IRI 0.003;
 use Types::Namespace 0.004 qw( Iri );
 use namespace::autoclean;
 
-our $VERSION = '0.32';
+our $VERSION = '0.33_01';
 
 =head1 NAME
 
