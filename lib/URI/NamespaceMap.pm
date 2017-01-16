@@ -97,9 +97,9 @@ around BUILDARGS => sub {
 	if (ref($parameters[0]) eq 'ARRAY') {
 		return { namespace_map => $self->_guess(@{$parameters[0]}) };
 	}
-	return $self->$next(@parameters) if (@parameters > 1);
-	return $self->$next(@parameters) if (exists $parameters[0]->{namespace_map});
-	return { namespace_map => $parameters[0] };
+	unless (@parameters == 1 && not exists $parameters[0]->{namespace_map}) {
+		return { namespace_map => $parameters[0] } 
+	} else { $self->$next(@parameters) }
 };
 
 has namespace_map => (
