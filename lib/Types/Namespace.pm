@@ -6,7 +6,7 @@ use Type::Library -base, -declare => qw( Uri Iri Namespace NamespaceMap );
 use Types::Standard qw( HashRef InstanceOf );
 use Types::URI qw();
 
-our $VERSION = '0.33_01';
+our $VERSION = '0.33_02';
 
 =head1 NAME
 
