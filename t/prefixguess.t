@@ -104,6 +104,10 @@ SKIP: {
 	$map->guess_and_add('http://example.org/isa#');
 	ok($map->namespace_uri('isax'), 'isax returns something');
 	is($map->namespace_uri('isax')->as_string, 'http://example.org/isa#', 'isax URI string OK');
+	my $map2		= URI::NamespaceMap->new( [ 'http://example.org/does#' ] );
+	isa_ok( $map2, 'URI::NamespaceMap' );
+	ok($map2->namespace_uri('doesx'), 'doesx returns something');
+
 }
 
 
