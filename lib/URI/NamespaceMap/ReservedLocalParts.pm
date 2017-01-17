@@ -23,6 +23,15 @@ sub is_reserved {
 
 URI::NamespaceMap::ReservedLocalParts - Permissible local parts for NamespaceMap
 
+=head1 VERSION
+
+Version 0.33_03
+
+=cut
+
+our $VERSION = '0.33_03';
+
+
 =head1 SYNOPSIS
 
     my $r = URI::NamespaceMap::ReservedLocalParts->new(disallowed => [qw/uri/]);
