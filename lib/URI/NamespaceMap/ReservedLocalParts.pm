@@ -17,7 +17,6 @@ sub is_reserved {
     return $self->can($keyword) ? 1 : 0;
 }
 
-1;
 
 =head1 NAME
 
@@ -85,3 +84,5 @@ Checks if the first argument passed is reserved or not. Returns a C<boolean>.
 See L<URI::NamespaceMap> for further details about authors, license, etc.
 
 =cut
+
+1;
