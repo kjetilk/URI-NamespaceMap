@@ -295,6 +295,7 @@ sub _guess {
 			while ($r->is_reserved($prefix)) {
 				$prefix .= 'x';
 				carp "Cannot resolve '$entry' as tried prefix '$prefix' conflicts with method names." if ($i > 5);
+				$i++;
 			}
 
 			if ($rnscu) {
@@ -336,6 +337,7 @@ sub _guess {
 				while ($r->is_reserved($prefix)) {
 					$prefix .= 'x';
 					carp "Cannot resolve '$entry' as tried prefix '$prefix' conflicts with method names." if ($i > 5);
+					$i++;
 				}
 				$namespaces{$prefix} = $entry;
 			}
