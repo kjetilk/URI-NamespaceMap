@@ -14,7 +14,7 @@ my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_
 
 my:v_0_33_03
     a           :Version ;
-    dc:issued   "2017-01-16"^^xsd:date ;
+    dc:issued   "2017-01-17"^^xsd:date ;
     rdfs:label "Check prefixes against methods."@en ;
     :revision   "0.33_03"^^xsd:string ;
     dcs:changeset [
