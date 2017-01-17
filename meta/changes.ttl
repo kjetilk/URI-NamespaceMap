@@ -9,14 +9,14 @@
 
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, my:v_0_10, 
                     my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, my:v_0_24, my:v_0_26,  
-                    my:v_0_28, my:v_0_30, my:v_0_32, my:v_0_33_02 .
+                    my:v_0_28, my:v_0_30, my:v_0_32, my:v_0_33_03 .
     
 
-my:v_0_33_02
+my:v_0_33_03
     a           :Version ;
     dc:issued   "2017-01-16"^^xsd:date ;
     rdfs:label "Check prefixes against methods."@en ;
-    :revision   "0.33_02"^^xsd:string ;
+    :revision   "0.33_03"^^xsd:string ;
     dcs:changeset [
       dcs:item
 	       [ rdfs:label "Remove strict/warnings pragmas where Moo is used."@en ; 
