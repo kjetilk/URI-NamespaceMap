@@ -14,6 +14,21 @@ unless (defined $xmlns || defined $rdfns || defined $rnscu || defined $rdfpr) {
 	plan skip_all => 'None of the namespace modules XML::CommonNS, RDF::NS::Curated, RDF::NS or RDF::Prefixes are installed'
 }
 
+package MyClass {
+	use Moo;
+	extends 'URI::NamespaceMap';
+	has foo => ( is => 'ro' );
+	has foox => ( is => 'ro' );
+	has fooxx => ( is => 'ro' );
+	has fooxxx => ( is => 'ro' );
+	has fooxxxx => ( is => 'ro' );
+	has fooxxxxx => ( is => 'ro' );
+	has fooxxxxxx => ( is => 'ro' );
+	has fooxxxxxxx => ( is => 'ro' );
+	has fooxxxxxxxx => ( is => 'ro' );
+}
+
+
 if (defined $rdfns) {
 	require RDF::NS;
 	unless (defined($RDF::NS::VERSION)) {
@@ -92,7 +107,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::Prefixes", 11 unless(defined $rdfpr);
+	skip "RDF::Prefixes", 12 unless(defined $rdfpr);
 	my $map		= URI::NamespaceMap->new( [ 'http://www.w3.org/2000/01/rdf-schema#', 'http://usefulinc.com/ns/doap#' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('rdfs'), 'RDFS returns something');
@@ -108,7 +123,18 @@ SKIP: {
 	my $map2		= URI::NamespaceMap->new( [ 'http://example.org/does#' ] );
 	isa_ok( $map2, 'URI::NamespaceMap' );
 	ok($map2->namespace_uri('doesx'), 'doesx returns something');
+
+	my $map3 = MyClass->new();
+
+	if ($map3->can('foo')) {
+		warn "OG";
+	}
+	throws_ok {
+		$map3->guess_and_add('http://example.org/foo#');
+	} qr/tried prefix 'fooxxxxx'/, "Throws if really weird prefix is tried.";
+
 }
+
 
 
 done_testing;

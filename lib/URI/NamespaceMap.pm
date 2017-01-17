@@ -334,8 +334,12 @@ sub _guess {
 				carp "Cannot resolve '$entry'";
 			} else {
 				my $i = 1;
+
+					warn $prefix;
 				while ($r->is_reserved($prefix)) {
 					$prefix .= 'x';
+					warn $prefix;
+
 					carp "Cannot resolve '$entry' as tried prefix '$prefix' conflicts with method names." if ($i > 5);
 					$i++;
 				}
