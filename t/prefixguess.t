@@ -1,4 +1,5 @@
 use Test::More;
+use Test::Exception;
 
 
 use strict;
@@ -91,7 +92,7 @@ SKIP: {
 }
 
 SKIP: {
-	skip "RDF::Prefixes", 7 unless(defined $rdfpr);
+	skip "RDF::Prefixes", 11 unless(defined $rdfpr);
 	my $map		= URI::NamespaceMap->new( [ 'http://www.w3.org/2000/01/rdf-schema#', 'http://usefulinc.com/ns/doap#' ] );
 	isa_ok( $map, 'URI::NamespaceMap' );
 	ok($map->namespace_uri('rdfs'), 'RDFS returns something');
@@ -107,7 +108,6 @@ SKIP: {
 	my $map2		= URI::NamespaceMap->new( [ 'http://example.org/does#' ] );
 	isa_ok( $map2, 'URI::NamespaceMap' );
 	ok($map2->namespace_uri('doesx'), 'doesx returns something');
-
 }
 
 
