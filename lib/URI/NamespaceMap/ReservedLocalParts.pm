@@ -24,11 +24,11 @@ URI::NamespaceMap::ReservedLocalParts - Permissible local parts for NamespaceMap
 
 =head1 VERSION
 
-Version 0.33_03
+Version 1.0
 
 =cut
 
-our $VERSION = '0.33_03';
+our $VERSION = '1.0';
 
 
 =head1 SYNOPSIS
