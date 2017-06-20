@@ -82,7 +82,10 @@ has _uri => (
 sub iri {
 	my ($self, $name) = @_;
 	if (defined($name)) {
-		return IRI->new($self->_uri->as_string . "$name");
+		my $str = $self->_uri->as_string;
+		my $last = substr($str, -1); # Find the last character of the string
+		$str .= '#'	unless (($last eq '#') or ($last eq '/')); 
+		return IRI->new($str . "$name");
 	} else {
 		return $self->_uri;
 	}
@@ -92,6 +95,8 @@ sub uri {
 	my ($self, $name) = @_;
 	my $iri = $self->_uri->as_string;
 	if (defined($name)) {
+		my $last = substr($iri, -1); # Find the last character of the string
+		$iri .= '#'	unless (($last eq '#') or ($last eq '/')); 
 		return URI->new($iri . "$name");
 	} else {
 		return URI->new($iri);
