@@ -10,8 +10,20 @@
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, 
                     my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, 
                     my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32, 
-                    my:v_1_00 .
+                    my:v_1_00, my:v_1_01 .
     
+
+my:v_1_01
+    a           :Version ;
+    dc:issued   "2017-06-21"^^xsd:date ;
+    rdfs:label "Append a hash to URIs needing it."@en ;
+    :revision   "1.01"^^xsd:string ;
+    dcs:changeset [
+      dcs:item
+	       [ rdfs:label "When adding local names, check if namespace ends in hash or slash, and append hash if not."@en ; a dcs:Bugfix ]
+	] .
+
+
 
 my:v_1_00
     a           :Version ;
