@@ -41,6 +41,17 @@ subtest 'With hash on XSD' => sub {
 	is($xsd->uri('long')->as_string, 'http://www.w3.org/2001/XMLSchema#long', 'expected resource object for XSD namespace with long when set with uri method' );
 };
 
+subtest 'Example without hash or slash' => sub {
+	my $ex = URI::Namespace->new( 'http://www.example.org' );
+	isa_ok( $ex, 'URI::Namespace' );
+	my $uri	= $ex->as_string;
+	is( $uri, 'http://www.example.org', 'expected resource object for namespace from EX namespace map without hash or slash' );
+	
+	is($ex->Order->as_string, 'http://www.example.orgOrder', 'expected resource object for EX namespace with Order' );
+	
+	is($ex->uri('Order')->as_string, 'http://www.example.orgOrder', 'expected resource object for EX namespace with Order when set with uri method' );
+};
+
 
 
 done_testing;
