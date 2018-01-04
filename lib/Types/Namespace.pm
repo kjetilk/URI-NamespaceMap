@@ -29,8 +29,9 @@ Types::Namespace - type constraints for dealing with namespaces
 
 =head1 DESCRIPTION
 
-L<Types::URI> is a type constraint library suitable for use with
-L<Moo>/L<Moose> attributes, L<Kavorka> sub signatures, and so forth.
+Types::Namespace is a type constraint library suitable for use with
+L<Moo>/L<Moose> attributes, L<Kavorka> sub signatures, and so
+forth. It builds on L<Types::URI>.
 
 =head1 TYPES
 
