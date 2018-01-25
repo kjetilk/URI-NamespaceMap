@@ -267,7 +267,6 @@ sub abbreviate {
 
 	my $prefix = $self->prefix_for($uri);
 
-	# XXX is this actually the most desirable behaviour?
 	return unless defined $prefix;
 
 	my $nsuri = _scrub_uri($self->namespace_uri($prefix));
