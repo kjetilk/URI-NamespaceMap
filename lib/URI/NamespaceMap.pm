@@ -34,6 +34,10 @@ our $VERSION = '1.04';
   $map->add_mapping(rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
   $map->list_prefixes;  #  ( 'foaf', 'rdf', 'xsd' )
   $map->foaf; # Returns URI::Namespace object
+  while (my ($prefix, $nsURI) = $map->each_map) {
+	 $node->setNamespace($nsURI->as_string, $prefix); # For use with XML::LibXML
+  }
+
 
 =head1 DESCRIPTION
 
@@ -88,6 +92,11 @@ Returns an array of L<URI::Namespace> objects with all the namespaces.
 
 Returns an array of prefixes.
 
+=item C<< each_map >>
+
+Returns an 2-element list where the first element is a prefix and the
+second is the corresponding L<URI::Namespace> object.
+
 =cut
 
 around BUILDARGS => sub {
@@ -126,6 +135,7 @@ sub remove_mapping  { delete $_[0]->namespace_map->{$_[1]} }
 sub namespace_uri   { $_[0]->namespace_map->{$_[1]} }
 sub list_namespaces { values %{ $_[0]->namespace_map } }
 sub list_prefixes   { keys   %{ $_[0]->namespace_map } }
+sub each_map        { each   %{ $_[0]->namespace_map } }
 
 
 =item C<< guess_and_add ( @string_or_uri ) >>
