@@ -10,10 +10,10 @@
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, 
                     my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, 
                     my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32, 
-                    my:v_1_00, my:v_1_02, my:v_1_04, my:v_1_05_01 .
+                    my:v_1_00, my:v_1_02, my:v_1_04, my:v_1_05_02 .
     
 
-my:v_1_05_01
+my:v_1_05_02
     a           :Version ;
     dc:issued   "2018-01-25"^^xsd:date ;
     rdfs:label "Add each_map method."@en ;
@@ -22,6 +22,7 @@ my:v_1_05_01
     dcs:changeset [
       dcs:item
 	       [ rdfs:label "Add each_map method"@en ; a dcs:Addition ]
+	       [ rdfs:label "Check for Iri in scrubber"@en ; a dcs:Addition ]
 	] .
 
 my:v_1_04
