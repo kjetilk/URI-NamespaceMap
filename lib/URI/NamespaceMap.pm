@@ -194,6 +194,9 @@ sub _scrub_uri {
 			if ($uri->isa('URI::Namespace')) {
 				$uri = $uri->as_string;
 			}
+			elsif ($uri->isa('IRI')) {
+				$uri = $uri->as_string;
+			}
 			elsif ($uri->isa('URI')) {
 				# it's probably not necessary to do this, but whatever
 				$uri = $uri->as_string;
