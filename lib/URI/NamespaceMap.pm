@@ -325,7 +325,7 @@ sub _guess {
 				my $ns = RDF::NS->new;
 				$namespaces{$prefix} = $ns->SELECT($entry);
 			}
-			carp "Cannot resolve '$entry'" unless $namespaces{$prefix};
+			carp "Cannot resolve assumed prefix '$entry'" unless $namespaces{$prefix};
 		} else {
 			# Lets assume a URI string
 			carp "Cannot resolve '$entry' without RDF::NS::Curated, RDF::NS or RDF::Prefixes" unless ($rnscu || $rdfns || $rdfpr);
@@ -343,7 +343,7 @@ sub _guess {
 				$prefix = $context->get_prefix($entry);
 			}
 			unless ($prefix) {
-				carp "Cannot resolve '$entry'";
+				carp "Cannot resolve assumed URI string '$entry'";
 			} else {
 				my $i = 1;
 				while ($r->is_reserved($prefix)) {
