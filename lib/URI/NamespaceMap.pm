@@ -209,6 +209,9 @@ sub _scrub_uri {
 				# and this
 				$uri = $uri->uri->uri_value;
 			}
+#			elsif ($uri =~ m/^\<(.*?)\>$/) {
+#			  $uri = $1;
+#			}
 			else {
 				# let's hope whatever was passed in has a string overload
 				$uri = "$uri";
