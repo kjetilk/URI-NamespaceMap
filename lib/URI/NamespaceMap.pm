@@ -51,11 +51,18 @@ This module provides an object to manage multiple namespaces for creating L<URI:
 
 Returns a new namespace map object. You can pass a hash reference with
 mappings from local names to namespace URIs (given as string or
-L<RDF::Trine::Node::Resource>) or namespaces_map with a hashref. You
-may also pass an arrayref containing just prefixes and/or namespace
-URIs, and the module will try to guess the missing part. To use this
-feature, you need L<RDF::NS::Curated>, L<RDF::NS>, L<XML::CommonNS> or
-L<RDF::Prefixes>, or preferably all of them.
+L<RDF::Trine::Node::Resource>) or namespaces_map with a hashref. 
+
+You may also pass an arrayref containing just prefixes and/or
+namespace URIs, and the module will try to guess the missing part. To
+use this feature, you need L<RDF::NS::Curated>, L<RDF::NS>,
+L<XML::CommonNS> or L<RDF::Prefixes>, or preferably all of them. With
+that, you can do e.g.
+
+  my $map = URI::NamespaceMap->new( 'rdf', 'xsd', 'foaf' );
+
+and have the correct mappings added automatically.
+
 
 
 =item C<< add_mapping ( $name => $uri ) >>
