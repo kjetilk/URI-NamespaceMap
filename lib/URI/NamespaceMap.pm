@@ -1,3 +1,16 @@
+=pod
+
+=head1 NAME
+
+URI::NamespaceMap - Class holding a collection of namespaces
+
+=head1 VERSION
+
+Version 1.06
+
+=cut
+
+
 package URI::NamespaceMap;
 use Moo 1.006000;
 use Module::Load::Conditional qw[can_load];
@@ -11,17 +24,6 @@ use Types::Namespace 0.004 qw(Namespace);
 use URI::NamespaceMap::ReservedLocalParts;
 use namespace::autoclean;
 
-=pod
-
-=head1 NAME
-
-URI::NamespaceMap - Class holding a collection of namespaces
-
-=head1 VERSION
-
-Version 1.06
-
-=cut
 
 our $VERSION = '1.06';
 
