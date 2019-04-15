@@ -11,6 +11,8 @@ use Types::Namespace 0.004 qw(Namespace);
 use URI::NamespaceMap::ReservedLocalParts;
 use namespace::autoclean;
 
+=pod
+
 =head1 NAME
 
 URI::NamespaceMap - Class holding a collection of namespaces
