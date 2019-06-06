@@ -125,6 +125,11 @@ sub local_part {
   return $local_part;
 }
 
+sub is_ns_of {
+  my ($self, $fulluri) = @_;
+  return defined($self->local_part($fulluri));
+}
+
 
 for my $method (qw/ abs rel eq canonical /) {
 	eval qq[ sub $method { shift->uri->${method}(\@_) } ];
