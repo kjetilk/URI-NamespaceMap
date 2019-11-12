@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::Deep;
 use Types::Namespace qw( to_NamespaceMap to_Namespace to_Uri to_Iri );
 use Module::Load::Conditional qw(can_load);
 
@@ -56,18 +57,17 @@ use RDF::Trine::Namespace;
   _test_to_ns(RDF::Trine::iri('http://www.example.net/'));
 
   use RDF::Trine::NamespaceMap;
-  my $map = RDF::Trine::NamespaceMap->new( { foo => 'http://example.org/foo#',
-															bar => 'http://example.com/bar/' } );
+  my $data = { foo => 'http://example.org/foo#',
+					bar => 'http://example.com/bar/' };
+  my $map = RDF::Trine::NamespaceMap->new( $data );
   my $urimap = to_NamespaceMap($map);
   isa_ok($urimap, 'URI::NamespaceMap');
-  my @prefix = $urimap->list_prefixes;
-  is($prefix[0], 'foo', 'First prefix OK');
-  is($prefix[1], 'bar', 'Second prefix OK');
-  my @nsuris = $urimap->list_namespaces;
-  isa_ok($nsuris[0], 'URI::Namespace');
-  is($nsuris[0]->as_string, 'http://example.org/foo#', 'First NS OK');
-  isa_ok($nsuris[1], 'URI::Namespace');
-  is($nsuris[1]->as_string, 'http://example.com/bar/', 'Second NS OK');
+  my $result;
+  while (my ($prefix, $uri) = $urimap->each_map) {
+	 isa_ok($uri, 'URI::Namespace');
+	 $result->{$prefix} = $uri->as_string;
+  }
+  cmp_deeply($result, $data, 'Roundtrips OK');
 }
 
 
