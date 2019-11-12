@@ -6,6 +6,8 @@ use Type::Library -base, -declare => qw( Uri Iri Namespace NamespaceMap );
 use Types::Standard qw( HashRef InstanceOf );
 use Types::URI qw();
 
+my $AtteanIRI = InstanceOf['Attean::IRI'];
+
 our $VERSION = '1.08';
 
 =head1 NAME
@@ -85,6 +87,7 @@ __PACKAGE__->add_type(
 	parent     => InstanceOf['URI::Namespace'],
 	coercion   => [
 		Iri->coercibles ,=> q{ "URI::Namespace"->new($_) },
+		$AtteanIRI      ,=> q{ "URI::Namespace"->new($_->as_string) },
 	],
 );
 
