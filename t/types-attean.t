@@ -6,6 +6,9 @@ use Test::More;
 use Test::Requires { 'Attean' => '0.023' };
 use Types::Namespace qw( to_NamespaceMap to_Namespace to_Uri to_Iri );
 
+use lib 't/lib';
+
+use CommonTest qw(test_to_ns);
 
 my $nsuri = URI::Namespace->new('http://www.example.net/');
 
@@ -17,14 +20,8 @@ use Types::Attean qw( to_AtteanIRI );
 my $airi = to_AtteanIRI($nsuri);
 isa_ok($airi, 'Attean::IRI');
 is($airi->as_string, 'http://www.example.net/', "Correct string URI to AtteanIRI");
-_test_to_ns(Attean::IRI->new('http://www.example.net/'));
+test_to_ns(Attean::IRI->new('http://www.example.net/'));
 
-sub _test_to_ns {
-  my $uri = shift;
-  my $nsiri = to_Namespace($uri);
-  isa_ok($nsiri, 'URI::Namespace');
-  is($nsiri->as_string, 'http://www.example.net/', 'Correct string URI from ' . ref($uri));
-  ok($nsiri->equals($uri), 'Is the same URI');
-}
+
 
 done_testing;
