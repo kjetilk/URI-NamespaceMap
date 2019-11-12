@@ -6,6 +6,7 @@ use Type::Library -base, -declare => qw( Uri Iri Namespace NamespaceMap );
 use Types::Standard qw( HashRef InstanceOf );
 use Types::URI qw();
 
+my $HalUri     = InstanceOf['Data::HAL::URI'];
 my $AtteanIRI  = InstanceOf['Attean::IRI'];
 my $TrineNS    = InstanceOf['RDF::Trine::Namespace'];
 my $TrineNSMap = InstanceOf['RDF::Trine::NamespaceMap'];
@@ -91,6 +92,7 @@ __PACKAGE__->add_type(
 	coercion   => [
 		Iri->coercibles ,=> q{ "URI::Namespace"->new($_) },
 		$AtteanIRI      ,=> q{ "URI::Namespace"->new($_->as_string) },
+		$HalUri         ,=> q{ "URI::Namespace"->new($_->as_string) },
       $TrineNode      ,=> q{ "URI::Namespace"->new($_->as_string) },
       $TrineNS        ,=> q{ "URI::Namespace"->new($_->as_string) },
 	],
