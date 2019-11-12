@@ -3,7 +3,11 @@
 use strict;
 use warnings;
 use Test::More;
-use Types::Namespace qw( to_NamespaceMap to_Namespace to_Uri to_Iri );
+use lib 't/lib';
+
+use CommonTest qw(test_to_ns);
+use Types::Namespace qw( to_Uri to_Iri );
+
 
 my $nsuri = URI::Namespace->new('http://www.example.net/');
 
@@ -22,19 +26,11 @@ my $nsuri = URI::Namespace->new('http://www.example.net/');
 }
 
 
-_test_to_ns(URI->new('http://www.example.net/'));
+test_to_ns(URI->new('http://www.example.net/'));
 
-_test_to_ns(IRI->new('http://www.example.net/'));
+test_to_ns(IRI->new('http://www.example.net/'));
 
-_test_to_ns('http://www.example.net/');
-
-sub _test_to_ns {
-  my $uri = shift;
-  my $nsiri = to_Namespace($uri);
-  isa_ok($nsiri, 'URI::Namespace');
-  is($nsiri->as_string, 'http://www.example.net/', 'Correct string URI from ' . ref($uri));
-  ok($nsiri->equals($uri), 'Is the same URI');
-}
+test_to_ns('http://www.example.net/');
 
 
 done_testing;
