@@ -7,11 +7,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08, 
-                    my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22, 
-                    my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32, 
+my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06, my:v_0_08,
+                    my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22,
+                    my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32,
                     my:v_1_00, my:v_1_02, my:v_1_04, my:v_1_06, my:v_1_08 .
-    
+
 
 my:v_1_08
     a           :Version ;
@@ -20,10 +20,10 @@ my:v_1_08
     :revision   "1.08"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.08> ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "Add local_part method to URI::Namespace."@en ; a dcs:Addition ]
-	] .
- 
+        dcs:item
+	[ rdfs:label "Add local_part method to URI::Namespace."@en ; a dcs:Addition ]
+    ] .
+
 my:v_1_06
     a           :Version ;
     dc:issued   "2018-01-27"^^xsd:date ;
@@ -31,10 +31,10 @@ my:v_1_06
     :revision   "1.06"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.06> ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "Add each_map method"@en ; a dcs:Addition ],
-	       [ rdfs:label "Check for Iri in scrubber"@en ; a dcs:Addition ]
-	] .
+        dcs:item
+	[ rdfs:label "Add each_map method"@en ; a dcs:Addition ],
+	[ rdfs:label "Check for Iri in scrubber"@en ; a dcs:Addition ]
+    ] .
 
 my:v_1_04
     a           :Version ;
@@ -43,9 +43,9 @@ my:v_1_04
     :revision   "1.04"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.04> ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "Partly revert fix in 1.02, now only append a hash to the XML Schema URI (closes issue #14)."@en ; a dcs:Bugfix ]
-	] .
+        dcs:item
+	[ rdfs:label "Partly revert fix in 1.02, now only append a hash to the XML Schema URI (closes issue #14)."@en ; a dcs:Bugfix ]
+    ] .
 
 my:v_1_02
     a           :Version ;
@@ -53,9 +53,9 @@ my:v_1_02
     rdfs:label "Append a hash to URIs needing it."@en ;
     :revision   "1.02"^^xsd:string ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "When adding local names, check if namespace ends in hash or slash, and append hash if not."@en ; a dcs:Bugfix ]
-	] .
+        dcs:item
+	[ rdfs:label "When adding local names, check if namespace ends in hash or slash, and append hash if not."@en ; a dcs:Bugfix ]
+    ] .
 
 
 
@@ -66,22 +66,21 @@ my:v_1_00
     rdfs:label "Check prefixes so they don't conflict with existing methods."@en ;
     :revision   "1.00"^^xsd:string ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "Remove strict/warnings pragmas where Moo is used."@en ; 
-                 a dcs:Removal;
-                 dcs:blame <http://purl.org/NET/cpan-uri/person/kwakwa> 
-               ],
-	       [ rdfs:label "Prefixes that will conflict with existing methods will throw an error."@en ; 
-                 a dcs:Addition;
-                 dcs:blame <http://purl.org/NET/cpan-uri/person/kwakwa> 
-               ],
-               [ rdfs:label "Minor cleanups."@en ; a dcs:Change ] ,
-	       [ rdfs:label "Improve the BUILDARGS code."@en ; 
-                 a dcs:Change ; 
-                 dcs:thanks <http://purl.org/NET/cpan-uri/person/perigrin>
-               ]
-
-	] .
+        dcs:item
+	[ rdfs:label "Remove strict/warnings pragmas where Moo is used."@en ;
+            a dcs:Removal;
+            dcs:blame <http://purl.org/NET/cpan-uri/person/kwakwa>
+        ],
+	[ rdfs:label "Prefixes that will conflict with existing methods will throw an error."@en ;
+            a dcs:Addition;
+            dcs:blame <http://purl.org/NET/cpan-uri/person/kwakwa>
+        ],
+        [ rdfs:label "Minor cleanups."@en ; a dcs:Change ] ,
+	[ rdfs:label "Improve the BUILDARGS code."@en ;
+            a dcs:Change ;
+            dcs:thanks <http://purl.org/NET/cpan-uri/person/perigrin>
+        ]
+    ] .
 
 my:v_0_32
     a           :Version ;
@@ -89,12 +88,11 @@ my:v_0_32
     rdfs:label "New guessing method and improved diagnostics."@en ;
     :revision   "0.32"^^xsd:string ;
     dcs:changeset [
-      dcs:item
-	       [ rdfs:label "Rework some tests that fails in strange ways."@en ; a dcs:Bugfix ],
-               [ rdfs:label "Add method for adding guesses post-construction."@en ; a dcs:Addition ] ,
-	       [ rdfs:label "Use carp instead of warns."@en ; a dcs:Change ]
-
-	] .
+        dcs:item
+	[ rdfs:label "Rework some tests that fails in strange ways."@en ; a dcs:Bugfix ],
+        [ rdfs:label "Add method for adding guesses post-construction."@en ; a dcs:Addition ] ,
+	[ rdfs:label "Use carp instead of warns."@en ; a dcs:Change ]
+    ] .
 
 my:v_0_30
     a           :Version ;
@@ -103,9 +101,9 @@ my:v_0_30
     :revision   "0.30"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.30> ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Remove a test because toolchain makes it hard to get the correct version."@en ; a dcs:Bugfix ] 
-	] .
+        dcs:item
+	[ rdfs:label "Remove a test because toolchain makes it hard to get the correct version."@en ; a dcs:Bugfix ] 
+    ] .
 
 my:v_0_28
     a           :Version ;
@@ -114,9 +112,9 @@ my:v_0_28
     :revision   "0.28"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.28> ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Had forgotten to update error messages."@en ; a dcs:Bugfix ] 
-	] .
+        dcs:item
+	[ rdfs:label "Had forgotten to update error messages."@en ; a dcs:Bugfix ] 
+    ] .
 
 my:v_0_26
     a           :Version ;
@@ -125,9 +123,9 @@ my:v_0_26
     :revision   "0.26"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.26> ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Support for RDF::NS::Curated."@en ; a dcs:Change ] 
-	] .
+        dcs:item
+	[ rdfs:label "Support for RDF::NS::Curated."@en ; a dcs:Change ] 
+    ] .
 
 my:v_0_24
     a           :Version ;
@@ -136,12 +134,12 @@ my:v_0_24
     :revision   "0.24"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.24> ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Reindent using Emacs smart-tabs."@en ; a dcs:Change ] ,
-		    [ rdfs:label "Improve documentation, autoloader."@en ; a dcs:Change ] ,
-		    [ rdfs:label "Some code cleanup."@en ; a dcs:Change ] ,
-		    [ rdfs:label "Use a string comparison in failing test."@en ; a dcs:Bugfix ] 
-	] .
+        dcs:item
+	[ rdfs:label "Reindent using Emacs smart-tabs."@en ; a dcs:Change ] ,
+	[ rdfs:label "Improve documentation, autoloader."@en ; a dcs:Change ] ,
+	[ rdfs:label "Some code cleanup."@en ; a dcs:Change ] ,
+	[ rdfs:label "Use a string comparison in failing test."@en ; a dcs:Bugfix ] 
+    ] .
 
 my:v_0_22
     a           :Version ;
@@ -150,9 +148,9 @@ my:v_0_22
     :revision   "0.22"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.22> ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Clean up source tree."@en ; a dcs:Change ] 
-	] .
+        dcs:item
+	[ rdfs:label "Clean up source tree."@en ; a dcs:Change ] 
+    ] .
 
 my:v_0_21
     a           :Version ;
@@ -160,9 +158,9 @@ my:v_0_21
     rdfs:label "Fix missing Changes."@en ;
     :revision   "0.21"^^xsd:string ;
     dcs:changeset [
-      dcs:item
-		    [ rdfs:label "Fix missing Changes."@en ; a dcs:Bugfix ] 
-	] .
+        dcs:item
+	[ rdfs:label "Fix missing Changes."@en ; a dcs:Bugfix ] 
+    ] .
 
 my:v_0_20
     a           :Version ;
@@ -170,13 +168,13 @@ my:v_0_20
     rdfs:label "Moo refactoring."@en ;
     :revision   "0.20"^^xsd:string ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "Port to Moo."@en ; 
-	  dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
-	  a dcs:Change ] ,
+	    dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
+	    a dcs:Change ] ,
         [ rdfs:label "Convert packaging to Dist::Inkt."@en ; 
-	  dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
-	  a dcs:Change ] ,
+	    dcs:blame <http://purl.org/NET/cpan-uri/person/tobyink> ;
+	    a dcs:Change ] ,
 	[ rdfs:label "Warn the user when they have too old RDF::NS but not in automated tests."@en ; a dcs:Addition ]      
     ] .
 
@@ -187,15 +185,15 @@ my:v_0_12
     :revision   "0.12"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_0.12> ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "Support the new IRI module."@en ; 
-	  dcs:blame <http://kasei.us/about/foaf.xrdf#greg> ;
-	  a dcs:Addition ] ,
+	    dcs:blame <http://kasei.us/about/foaf.xrdf#greg> ;
+	    a dcs:Addition ] ,
 	[ rdfs:label "Silence warnings when URI doesn't have local part."@en ; a dcs:Bugfix ] ,
 	[ rdfs:label "Warn the user in test when they have too old RDF::NS."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Use Types::URI."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Link Debian packages in metadata."@en ; a dcs:Addition ] 		 
-	] .
+    ] .
 
 my:v_0_10
     a           :Version ;
@@ -203,11 +201,11 @@ my:v_0_10
     rdfs:label "Compatibility with RDF::Trine::NamespaceMap."@en ;
     :revision   "0.10"^^xsd:string ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "Make it possible to send local part to the uri method of URI::Namespace."@en ; 
-	  dcs:thanks <http://purl.org/NET/cpan-uri/person/perigrin> ;
+	    dcs:thanks <http://purl.org/NET/cpan-uri/person/perigrin> ;
 	  a dcs:Addition ] 
-	] .
+    ] .
 
 my:v_0_08
     a           :Version ;
@@ -215,11 +213,11 @@ my:v_0_08
     rdfs:label "Prefix guessing."@en ;
     :revision   "0.08"^^xsd:string ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "Prefix guessing using RDF::NS, RDF::Prefixes or XML::CommonNS."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Fix breakage in terms with hyphens."@en ; a dcs:Bugfix ;
-	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ]
-	] .
+	    dcs:blame <http://doriantaylor.com/person/dorian-taylor> ]
+    ] .
 
 my:v_0_06
     a           :Version ;
@@ -227,9 +225,9 @@ my:v_0_06
     rdfs:label "Bugfix release."@en ;
     :revision   "0.06"^^xsd:string ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "URI::Namespace must be used from URI::NamespaceMap."@en ; a dcs:Bugfix ] 
-	] .
+    ] .
 
 my:v_0_04
     a           :Version ;
@@ -237,14 +235,14 @@ my:v_0_04
     rdfs:label "Reverse lookups."@en ;
     :revision   "0.04"^^xsd:string ;
     dcs:changeset [
-      dcs:item
+        dcs:item
         [ rdfs:label "Stop using blank node in makefile.ttl to fix version_from."@en ; a dcs:Change ] , 
         [ rdfs:label "Adding reverse lookups, i.e. abbreviation and prefix_for."@en ; 
-	  a dcs:Addition ; 
-	  dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] 
-	] .
+	    a dcs:Addition ; 
+	    dcs:blame <http://doriantaylor.com/person/dorian-taylor> ] 
+    ] .
 
- 
+
 
 my:v_0_02
     a           :Version ;
