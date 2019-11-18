@@ -46,13 +46,15 @@ forth. It builds on L<Types::URI>.
 
 A class type for L<URI::Namespace>.
 
-Can coerce from L<URI>, L<IRI>, L<Path::Tiny>, and strings.
+Can coerce from L<URI>, L<IRI>, L<Path::Tiny>, L<Attean::IRI>,
+L<RDF::Trine::Namespace>, L<RDF::Trine::Node::Resource> and strings.
 
 =item C<< NamespaceMap >>
 
 A class type for L<URI::NamespaceMap>.
 
-Can coerce from a hashref of C<< prefix => URI >> pairs.
+Can coerce from a hashref of C<< prefix => URI >> pairs and from
+L<RDF::Trine::NamespaceMap>.
 
 =item C<< Uri >>, C<< Iri >>
 
