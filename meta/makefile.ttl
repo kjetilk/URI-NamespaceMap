@@ -6,6 +6,10 @@
 <project>
     :test-requirement       [ :on "Test::More 0.88"^^:CpanId ];
     :test-requirement       [ :on "Test::Exception"^^:CpanId ];
+    :test-requirement       [ :on "Test::Deep"^^:CpanId ];
+    :test-requirement       [ :on "Test::Requires"^^:CpanId ];
+    :test-recommendation    [ :on "Attean 0.023"^^:CpanId ];
+    :test-suggestion        [ :on "RDF::Trine"^^:CpanId ];
     :runtime-requirement    [ :on "perl 5.008001"^^:CpanId ];   # though IRI requires Perl 5.14 anyway
     :runtime-requirement    [ :on "Moo 1.006000"^^:CpanId ];
     :runtime-requirement    [ :on "URI 1.52"^^:CpanId ];
