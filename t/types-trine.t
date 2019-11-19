@@ -29,6 +29,7 @@ while (my ($prefix, $uri) = $urimap->each_map) {
   isa_ok($uri, 'URI::Namespace');
   $result->{$prefix} = $uri->as_string;
 }
+is(scalar keys(%{$result}), 2, 'Two elements in the result hash');
 cmp_deeply($result, $data, 'Roundtrips OK');
 
 done_testing;
