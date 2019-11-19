@@ -6,7 +6,7 @@ use Scalar::Util qw(blessed);
 use Types::Namespace 0.004 qw( Iri );
 use namespace::autoclean;
 
-our $VERSION = '1.09_01';
+our $VERSION = '1.09_02';
 
 =head1 NAME
 

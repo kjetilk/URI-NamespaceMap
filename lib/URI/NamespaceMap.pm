@@ -6,7 +6,7 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 =head1 VERSION
 
-Version 1.09_01
+Version 1.09_02
 
 =cut
 
@@ -25,7 +25,7 @@ use URI::NamespaceMap::ReservedLocalParts;
 use namespace::autoclean;
 
 
-our $VERSION = '1.09_01';
+our $VERSION = '1.09_02';
 
 
 =head1 SYNOPSIS
