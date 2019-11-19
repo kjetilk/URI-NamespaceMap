@@ -4,23 +4,21 @@ URI::NamespaceMap - Class holding a collection of namespaces
 
 # VERSION
 
-Version 1.08
+Version 1.09\_01
 
 # SYNOPSIS
 
-```perl
-use URI::NamespaceMap;
-my $map = URI::NamespaceMap->new( { xsd => 'http://www.w3.org/2001/XMLSchema#' } );
-$map->namespace_uri('xsd')->as_string;
-my $foaf = URI::Namespace->new( 'http://xmlns.com/foaf/0.1/' );
-$map->add_mapping(foaf => $foaf);
-$map->add_mapping(rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
-$map->list_prefixes;  #  ( 'foaf', 'rdf', 'xsd' )
-$map->foaf; # Returns URI::Namespace object
-while (my ($prefix, $nsURI) = $map->each_map) {
-       $node->setNamespace($nsURI->as_string, $prefix); # For use with XML::LibXML
-}
-```
+    use URI::NamespaceMap;
+    my $map = URI::NamespaceMap->new( { xsd => 'http://www.w3.org/2001/XMLSchema#' } );
+    $map->namespace_uri('xsd')->as_string;
+    my $foaf = URI::Namespace->new( 'http://xmlns.com/foaf/0.1/' );
+    $map->add_mapping(foaf => $foaf);
+    $map->add_mapping(rdf => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#' );
+    $map->list_prefixes;  #  ( 'foaf', 'rdf', 'xsd' )
+    $map->foaf; # Returns URI::Namespace object
+    while (my ($prefix, $nsURI) = $map->each_map) {
+           $node->setNamespace($nsURI->as_string, $prefix); # For use with XML::LibXML
+    }
 
 # DESCRIPTION
 
@@ -40,9 +38,7 @@ This module provides an object to manage multiple namespaces for creating [URI::
     [XML::CommonNS](https://metacpan.org/pod/XML::CommonNS) or [RDF::Prefixes](https://metacpan.org/pod/RDF::Prefixes), or preferably all of them. With
     that, you can do e.g.
 
-    ```perl
-    my $map = URI::NamespaceMap->new( 'rdf', 'xsd', 'foaf' );
-    ```
+        my $map = URI::NamespaceMap->new( 'rdf', 'xsd', 'foaf' );
 
     and have the correct mappings added automatically.
 
@@ -63,16 +59,12 @@ This module provides an object to manage multiple namespaces for creating [URI::
 
     This module creates a method for all the prefixes, so you can say e.g.
 
-    ```
-    $map->foaf
-    ```
+        $map->foaf
 
     and get a [URI::Namespace](https://metacpan.org/pod/URI::Namespace) object for the FOAF namespace. Since
     [URI::Namespace](https://metacpan.org/pod/URI::Namespace) does the same for local names, you can then say e.g.
 
-    ```
-    $map->foaf->name
-    ```
+        $map->foaf->name
 
     to get a full [URI](https://metacpan.org/pod/URI).
 
@@ -109,9 +101,7 @@ This module provides an object to manage multiple namespaces for creating [URI::
     Complement to ["namespace\_uri"](#namespace_uri). Returns the given URI in `foo:bar`
     format or `undef` if it wasn't matched, therefore the idiom
 
-    ```perl
-    my $str = $nsmap->abbreviate($uri_node) || $uri->as_string;
-    ```
+        my $str = $nsmap->abbreviate($uri_node) || $uri->as_string;
 
     may be useful for certain serialization tasks.
 
@@ -144,13 +134,11 @@ Please report any bugs using [github](https://github.com/kjetilk/URI-NamespaceMa
 
 You can find documentation for this module with the perldoc command.
 
-```
-perldoc URI::NamespaceMap
-```
+    perldoc URI::NamespaceMap
 
 # COPYRIGHT & LICENSE
 
-Copyright 2012,2013,2014,2015,2016,2017,2018 Gregory Todd Williams, Chris Prather and Kjetil Kjernsmo
+Copyright 2012,2013,2014,2015,2016,2017,2018,2019 Gregory Todd Williams, Chris Prather and Kjetil Kjernsmo
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
