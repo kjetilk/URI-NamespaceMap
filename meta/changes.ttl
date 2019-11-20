@@ -10,18 +10,18 @@
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06,
     my:v_0_08, my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22,
     my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32, my:v_1_00,
-    my:v_1_02, my:v_1_04, my:v_1_06, my:v_1_08, my:v_1_09_02 .
+    my:v_1_02, my:v_1_04, my:v_1_06, my:v_1_08, my:v_1_09_03 .
 
 
-my:v_1_09_02
+my:v_1_09_03
     a           :Version ;
     dc:issued   "2019-11-19"^^xsd:date ;
     rdfs:label "Add more coercions."@en ;
-    :revision   "1.09_02"^^xsd:string ;
+    :revision   "1.09_03"^^xsd:string ;
 #    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.10> ;
     dcs:changeset [
         dcs:item
-	[ rdfs:label "Add coercions for RDF::Trine and Attean classes."@en ; a dcs:Addition ],
+	[ rdfs:label "Add coercions for RDF::Trine, Data::HAL and Attean classes."@en ; a dcs:Addition ],
         [ rdfs:label "Bring Namespace.pm test coverage to 100%."@en ; a dcs:Addition ]
     ] .
 
