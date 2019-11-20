@@ -11,7 +11,7 @@ my $TrineNS    = InstanceOf['RDF::Trine::Namespace'];
 my $TrineNSMap = InstanceOf['RDF::Trine::NamespaceMap'];
 my $TrineNode  = InstanceOf['RDF::Trine::Node::Resource'];
 
-our $VERSION = '1.09_02';
+our $VERSION = '1.10';
 
 =head1 NAME
 
