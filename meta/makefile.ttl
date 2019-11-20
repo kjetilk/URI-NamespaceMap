@@ -8,10 +8,10 @@
     :test-requirement       [ :on "Test::Exception"^^:CpanId ];
     :test-requirement       [ :on "Test::Deep"^^:CpanId ];
     :test-requirement       [ :on "Test::Requires"^^:CpanId ];
-    :test-recommendation    [ :on "Attean 0.023"^^:CpanId ];
+    :test-recommendation    [ :on "Attean 0.025"^^:CpanId ];
     :test-suggestion        [ :on "RDF::Trine"^^:CpanId ];
     :test-suggestion        [ :on "Data::HAL"^^:CpanId ];
-    :runtime-requirement    [ :on "perl 5.008001"^^:CpanId ];   # though IRI requires Perl 5.14 anyway
+    :runtime-requirement    [ :on "perl 5.008001"^^:CpanId ];   # seems to work though IRI requires Perl 5.14
     :runtime-requirement    [ :on "Moo 1.006000"^^:CpanId ];
     :runtime-requirement    [ :on "URI 1.52"^^:CpanId ];
     :runtime-requirement    [ :on "IRI 0.004"^^:CpanId ];
