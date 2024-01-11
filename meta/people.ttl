@@ -33,7 +33,7 @@
     foaf:name "Toby Inkster";
     foaf:mbox <mailto:tobyink@cpan.org>.
 
-<http://purl.org/NET/cpan-uri/person/kwakwa>
+<http://purl.org/NET/cpan-uri/person/zmughal>
     a           foaf:Person ;
-    owl:sameAs  result:user-Paul-Williams ;
-    foaf:name   "Paul Williams" .
+    foaf:name   "Zakariyya Mughal" .
+

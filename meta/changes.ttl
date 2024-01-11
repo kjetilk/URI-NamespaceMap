@@ -10,8 +10,27 @@
 my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06,
     my:v_0_08, my:v_0_10, my:v_0_12, my:v_0_20, my:v_0_21, my:v_0_22,
     my:v_0_24, my:v_0_26, my:v_0_28, my:v_0_30, my:v_0_32, my:v_1_00,
-    my:v_1_02, my:v_1_04, my:v_1_06, my:v_1_08, my:v_1_10 .
+    my:v_1_02, my:v_1_04, my:v_1_06, my:v_1_08, my:v_1_10, my:v_1_12 .
 
+
+my:v_1_12
+    a           :Version ;
+    dc:issued   "2022-01-11"^^xsd:date ;
+    rdfs:label "Add new automations and small fixes."@en ;
+    :revision   "1.10"^^xsd:string ;
+    owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.12> ;
+    dcs:changeset [
+        dcs:item
+	[ rdfs:label "Add new Github CI automations."@en ; a dcs:Update ],
+        [ rdfs:label "Remove Travis CI."@en ;
+            a dcs:Removal ;
+            dcs:thanks <http://purl.org/NET/cpan-uri/person/zmughal>
+        ],
+        [ rdfs:label "Add explicit DESTROY."@en ;
+            a dcs:Addition ;
+            dcs:thanks <http://purl.org/NET/cpan-uri/person/zmughal>
+        ]
+    ] .
 
 my:v_1_10
     a           :Version ;
@@ -204,7 +223,7 @@ my:v_0_12
 	[ rdfs:label "Silence warnings when URI doesn't have local part."@en ; a dcs:Bugfix ] ,
 	[ rdfs:label "Warn the user in test when they have too old RDF::NS."@en ; a dcs:Addition ] ,
 	[ rdfs:label "Use Types::URI."@en ; a dcs:Addition ] ,
-	[ rdfs:label "Link Debian packages in metadata."@en ; a dcs:Addition ] 		 
+	[ rdfs:label "Link Debian packages in metadata."@en ; a dcs:Addition ]
     ] .
 
 my:v_0_10
