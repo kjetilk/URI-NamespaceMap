@@ -15,9 +15,9 @@ my:project :release my:v_0_01, my:v_0_02, my:v_0_04, my:v_0_06,
 
 my:v_1_12
     a           :Version ;
-    dc:issued   "2022-01-11"^^xsd:date ;
+    dc:issued   "2024-01-11"^^xsd:date ;
     rdfs:label "Add new automations and small fixes."@en ;
-    :revision   "1.10"^^xsd:string ;
+    :revision   "1.12"^^xsd:string ;
     owl:sameAs <http://packages.qa.debian.org/liburi-namespacemap-perl#upstreamsrc_1.12> ;
     dcs:changeset [
         dcs:item
